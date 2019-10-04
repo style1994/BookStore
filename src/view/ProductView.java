@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 
+import control.DataCheckControl;
 import control.TableControl;
 import service.MyTableModel;
 import service.ProductTable;
@@ -215,12 +216,7 @@ public class ProductView extends JPanel
         // 新增
         addButton.addActionListener((ActionEvent e) ->
         {
-            LinkedHashMap<String, String> map = new LinkedHashMap<>();
-            for (JTextField jTextField : textArrayList) // 把textfield資料丟進map
-            {
-                System.out.println(jTextField.getName() + "," + jTextField.getText());
-                map.put(jTextField.getName(), jTextField.getText());
-            }
+            
 
             int check = JOptionPane.showConfirmDialog(panel, "是否要新增資料?", "新增", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
@@ -229,7 +225,23 @@ public class ProductView extends JPanel
 
             if (check == JOptionPane.YES_OPTION)
             {
-                isSuccess = TableControl.addTableData(tableName, map, (MyTableModel) table.getModel());
+            	
+            	LinkedHashMap<String, String> map = new LinkedHashMap<>();
+                for (JTextField jTextField : textArrayList) // 把textfield資料丟進map
+                {
+                    System.out.println(jTextField.getName() + "," + jTextField.getText());
+                    map.put(jTextField.getName(), jTextField.getText());
+                }
+            	
+            	
+            	String message = DataCheckControl.productCheck(tableName, map);//判斷資料是否新增成功
+            	if(message.equals("成功")) {
+            		isSuccess = TableControl.addTableData(tableName, map, (MyTableModel) table.getModel());
+            		if(isSuccess == true) JOptionPane.showMessageDialog(panel, "新增"+message);            		
+            	}else {
+            		JOptionPane.showMessageDialog(panel, message);
+            	}
+                
             }
 
             if (isSuccess)
@@ -262,8 +274,18 @@ public class ProductView extends JPanel
                     {
                         map.put(jTextField.getName(), jTextField.getText());
                     }
+                    
+                    
+                    String message = DataCheckControl.productCheck(tableName, map);
+                    if(message.equals("成功")) { //做型態檢查
+                    	isSuccess = TableControl.updataTableData(tableName, map, row, model);
+                    	if(isSuccess == true) JOptionPane.showMessageDialog(panel, "更新"+message);
+                    }else {
+                    	JOptionPane.showMessageDialog(panel,message);
+                    }
+                    
 
-                    isSuccess = TableControl.updataTableData(tableName, map, row, model);
+                    
 
                     if (isSuccess) // 修改提示label訊息
                     {

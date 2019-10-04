@@ -23,10 +23,17 @@ public class OrderTable
 
             column.add((String) vector.get(0));
             type.add((String) vector.get(1));
-            isNull.add((Boolean) vector.get(2));
+//            isNull.add((Boolean) vector.get(2));
             // primaryKey.add((Boolean) vector.get(3));
 
         }
+        
+        isNull.add(false);
+        isNull.add(false);
+        isNull.add(false);
+        isNull.add(false);
+        isNull.add(false);
+        isNull.add(false);
 
         primaryKey.add(true);
         primaryKey.add(false);

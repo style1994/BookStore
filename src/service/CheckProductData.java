@@ -4,12 +4,12 @@ import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Vector;
 
-public class CheckMemberData
+public class CheckProductData
 {
     String tableName;
     LinkedHashMap<String, String> data;
 
-    public CheckMemberData(String tableName, LinkedHashMap<String, String> data)
+    public CheckProductData(String tableName, LinkedHashMap<String, String> data)
     {
         this.tableName = tableName;
         this.data = data;
@@ -17,13 +17,13 @@ public class CheckMemberData
 
     public boolean checkNull() 
     {
-        Vector<Boolean> isNull = MemberTable.isNull;
+        Vector<Boolean> isNull = ProductTable.isNull;
 
         int index = 0;
 
         while ((index = isNull.indexOf(false, index)) != -1) // 找到not null的欄位
         {
-            String column = MemberTable.column.get(index);
+            String column = ProductTable.column.get(index);
             if (data.get(column).isEmpty()) // 如果not null欄位值是空
             {
                 return false;
@@ -44,31 +44,31 @@ public class CheckMemberData
     		
     		switch (key)
 			{
-			case "m_no":
-				if(!value.matches("M\\d{5}")) {//編號格式限定M00001
-					System.out.println("m_no");
-					return "會員標號格式錯誤，範例:M00000";
+			case "b_no":
+				if(!value.matches("B\\d{5}")) {//編號格式限定B00001
+					System.out.println("b_no");
+					return "書本標號格式錯誤，範例:B00000";
 				}
 				break;
 
-			case "m_tel":
-				if(!value.matches("\\d{2}-\\d{7}") && !value.matches("\\d{10}")) {
-					System.out.println("m_tel");
-					return "電話標號格式錯誤，範例:02-1234567或0900111222";
+			case "b_isbn":
+				if(value.length() !=13) { //ISBN
+					System.out.println("b_isbn");
+					return "ISBN長度須為13碼";
 				}
 				break;
 				
-			case "m_bir":
-				if(!value.matches("\\d{4}-\\d{2}-\\d{2}") && !value.matches("")) { //日期限定0000-00-00
-					System.out.println("m_bir");
-					return "生日格式錯誤，範例:2019-01-07";
+			case "b_price":
+				if(!value.matches("\\d+") && Integer.parseInt(value)<0) { //價格只能輸入數字,且不可為負
+					System.out.println("b_bir");
+					return "價格只能輸入數字,且不可為負";
 				}
 				break;
 
-			case "m_email":
-				if(!value.matches(".+@.+..+") && value.matches("")) {//email
-					System.out.println("m_email");
-					return "email格式錯誤，範例:abc@gmail.com";
+			case "b_qty":
+				if(!value.matches("\\d+") && Integer.parseInt(value)<0) { //數量只能輸入數字,且不可為負
+					System.out.println("b_qty");
+					return "數量只能輸入數字,且不可為負";
 				}
 				break;
 			

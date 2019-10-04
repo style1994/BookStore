@@ -212,14 +212,15 @@ public class MemberView extends JPanel
 
             if (check == JOptionPane.YES_OPTION)
             {
-                boolean checkNull = DataCheckControl.memberCheck(tableName, map);
+                String message = DataCheckControl.memberCheck(tableName, map);
 
-                if (checkNull)
+                if (message.equals("成功"))
                 {
                     isSuccess = TableControl.addTableData(tableName, map, (MyTableModel) table.getModel());
+                    if(isSuccess == true) JOptionPane.showMessageDialog(panel, "新增"+message);
                 } else
                 {
-                    JOptionPane.showMessageDialog(panel, "*號欄位不得為空");
+                    JOptionPane.showMessageDialog(panel,message);
                 }
 
                 if (isSuccess)
@@ -281,8 +282,16 @@ public class MemberView extends JPanel
                     {
                         map.put(jTextField.getName(), jTextField.getText());
                     }
+                    
+                    String message = DataCheckControl.memberCheck(tableName, map); //做資料檢查
+                    if(message.equals("成功")) {
+                    	isSuccess = TableControl.updataTableData(tableName, map, row, model);
+                    	if(isSuccess == true) JOptionPane.showMessageDialog(panel, "更新"+message);
+                    }else {
+                    	JOptionPane.showMessageDialog(panel, message);
+					}
 
-                    isSuccess = TableControl.updataTableData(tableName, map, row, model);
+                    
 
                     if (isSuccess)
                     {

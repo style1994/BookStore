@@ -27,6 +27,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.JTableHeader;
 
+import control.DataCheckControl;
 import control.TableControl;
 import service.MyTableModel;
 import service.OrderDtTable;
@@ -275,19 +276,7 @@ public class OrderView extends JPanel
         addButton.addActionListener((ActionEvent e) ->
         {
 
-            LinkedHashMap<String, String> mapForDatabase = new LinkedHashMap<>();// 給database新增資料用的
-            LinkedHashMap<String, String> mapForModel = new LinkedHashMap<>(); // 給自訂model更新資料用的
-
-            for (int i = 0; i < textList.size(); i++)
-            {
-                JTextField myTextField = textList.get(i);
-                mapForModel.put(myTextField.getName(), myTextField.getText());
-                if (i < 3)
-                {
-                    mapForDatabase.put(myTextField.getName(), myTextField.getText());
-                }
-
-            }
+            
 
             int check = JOptionPane.showConfirmDialog(panel, "是否要新增資料?", "新增", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
@@ -295,9 +284,33 @@ public class OrderView extends JPanel
 
             if (check == JOptionPane.YES_OPTION)
             {
-                // 新增資料可以直接進去view裡面，所以在這裡直接給view名稱就可以，不必給實體資料表名稱
-                isSuccess = TableControl.add2TableData(tableName, mapForDatabase, mapForModel,
-                        (MyTableModel) table.getModel());
+            	
+            	LinkedHashMap<String, String> mapForDatabase = new LinkedHashMap<>();// 給database新增資料用的
+                LinkedHashMap<String, String> mapForModel = new LinkedHashMap<>(); // 給自訂model更新資料用的
+
+                for (int i = 0; i < textList.size(); i++)
+                {
+                    JTextField myTextField = textList.get(i);
+                    mapForModel.put(myTextField.getName(), myTextField.getText());
+                    if (i < 3)
+                    {
+                        mapForDatabase.put(myTextField.getName(), myTextField.getText());
+                    }
+
+                }
+                
+                String message = DataCheckControl.orderCheck(tableName, mapForModel); //檢查
+                if(message.equals("成功")) {
+                	// 新增資料可以直接進去view裡面，所以在這裡直接給view名稱就可以，不必給實體資料表名稱
+                    isSuccess = TableControl.add2TableData(tableName, mapForDatabase, mapForModel,
+                            (MyTableModel) table.getModel());
+                    if(isSuccess) JOptionPane.showMessageDialog(panel, "新增"+message);
+                }else {
+                	JOptionPane.showMessageDialog(panel,message);  
+				}
+            	
+
+                
             }
 
             if (isSuccess)
@@ -344,8 +357,16 @@ public class OrderView extends JPanel
                     }
 
                     MyTableModel model = (MyTableModel) table.getModel();
-                    // 這裡不用view用實體資料表
-                    isSuccess = TableControl.updata2TableData("book_order", mapForDataBase, mapForModel, row, model);
+                    
+                    String message = DataCheckControl.orderCheck(tableName, mapForModel);
+                    if(message.equals("成功")) {
+                    	// 這裡不用view用實體資料表
+                        isSuccess = TableControl.updata2TableData("book_order", mapForDataBase, mapForModel, row, model);
+                        if(isSuccess) JOptionPane.showMessageDialog(panel, "更新"+message);
+                    }else {
+                    	JOptionPane.showMessageDialog(panel, message);
+					}
+                    
 
                     if (isSuccess) // 修改使用者提示label
                     {

@@ -84,9 +84,14 @@ public class DBConnect
             }
 
         }
+        //serverTimezone=Asia/Taipei 設定時區
+        //setUnicode=true 使用unicode
+        //characterEncoding=UTF-8 設定使用utf8
+        //useSSL=false 關閉ssl
+        //allowPublicKeyRetrieval = true 允許公開密鑰登入
 
         this.address = "jdbc:mysql://" + ip + ":" + port + "/" + dbName
-                + "?serverTimezone=Asia/Taipei&setUnicode=true&characterEncoding=UTF-8&useSSL=false";
+                + "?serverTimezone=Asia/Taipei&setUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval = true";
 
         try
         {

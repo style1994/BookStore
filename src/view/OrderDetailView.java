@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 
+import control.DataCheckControl;
 import control.TableControl;
 import service.MyTableModel;
 import service.OrderDtTable;
@@ -241,21 +242,7 @@ public class OrderDetailView extends JPanel
         addButton.addActionListener((ActionEvent e) ->
         {
 
-            LinkedHashMap<String, String> mapForDatabase = new LinkedHashMap<>(); // 給資料庫的資料
-            LinkedHashMap<String, String> mapForModel = new LinkedHashMap<>(); // 給model的資料
-
-            for (int i = 0; i < textList.size(); i++)
-            {
-
-                JTextField myTextField = textList.get(i);
-
-                mapForModel.put(myTextField.getName(), myTextField.getText());
-                if (i <= 1 || i >= 6)
-                {
-                    mapForDatabase.put(myTextField.getName(), myTextField.getText());
-                }
-
-            }
+            
 
             int check = JOptionPane.showConfirmDialog(panel, "是否要新增資料?", "新增", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
@@ -263,9 +250,34 @@ public class OrderDetailView extends JPanel
 
             if (check == JOptionPane.YES_OPTION)
             {
-                // 新增資料可以直接進去view裡面，所以在這裡直接給view名稱就可以，不必給實體資料表名稱
-                isSuccess = TableControl.add2TableData(tableName, mapForDatabase, mapForModel,
-                        (MyTableModel) table.getModel());
+            	
+            	LinkedHashMap<String, String> mapForDatabase = new LinkedHashMap<>(); // 給資料庫的資料
+                LinkedHashMap<String, String> mapForModel = new LinkedHashMap<>(); // 給model的資料
+
+                for (int i = 0; i < textList.size(); i++)
+                {
+
+                    JTextField myTextField = textList.get(i);
+
+                    mapForModel.put(myTextField.getName(), myTextField.getText());
+                    if (i <= 1 || i >= 6)
+                    {
+                        mapForDatabase.put(myTextField.getName(), myTextField.getText());
+                    }
+
+                }
+            	
+                String message = DataCheckControl.orderDtCheck(tableName, mapForModel);
+                
+                if(message.equals("成功")) {
+                	// 新增資料可以直接進去view裡面，所以在這裡直接給view名稱就可以，不必給實體資料表名稱
+                    isSuccess = TableControl.add2TableData(tableName, mapForDatabase, mapForModel,
+                            (MyTableModel) table.getModel());
+                    if(isSuccess) JOptionPane.showMessageDialog(panel, "更新"+message);
+                }else {
+                	JOptionPane.showMessageDialog(panel, message);
+                }
+                
             }
 
             if (isSuccess)
