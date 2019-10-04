@@ -67,7 +67,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
-INSERT INTO `book` VALUES ('B0001','Servlet&JSP技術手冊','1','資訊','大山出版社','本',999,1,NULL),('B0002','Java王者歸來','1','資訊','深石數位科技','本',699,1,NULL),('B0003','測試','1','資訊','測試','本',999,1,NULL),('B0004','測試2','1','測試',NULL,'本',999,10,NULL),('B0005','殺手','566','小說','大山','本',100,6,NULL),('B0006','阿甘正傳','777','搞笑類','好運','本',999,30,'日本');
+INSERT INTO `book` VALUES ('B00001','Servlet&JSP技術手冊','1234567890123','資訊','大山出版社','本',999,1,NULL),('B00002','Java王者歸來','1234567890123','資訊','深石數位科技','本',699,1,NULL),('B00003','C#從入門到精通','1234567890123','資訊','資訊','本',999,1,NULL),('B00004','等一個人咖啡','1234567890123','小說',NULL,'本',999,10,NULL),('B00005','殺手','1234567890123','小說','大山','本',100,6,NULL),('B00006','阿甘正傳','1234567890123','搞笑類','好運','本',999,30,'日本');
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +84,7 @@ CREATE TABLE `book_order` (
   `o_m_no` varchar(10) NOT NULL,
   PRIMARY KEY (`o_no`),
   KEY `book_order_ibfk_1_idx` (`o_m_no`),
-  CONSTRAINT `book_order_ibfk_1` FOREIGN KEY (`o_m_no`) REFERENCES `membership` (`m_no`)
+  CONSTRAINT `book_order_ibfk_1` FOREIGN KEY (`o_m_no`) REFERENCES `membership` (`m_no`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -129,8 +129,8 @@ CREATE TABLE `book_orderdetail` (
   `od_price` int(11) NOT NULL,
   PRIMARY KEY (`od_no`,`od_b_no`),
   KEY `od_b_no` (`od_b_no`),
-  CONSTRAINT `book_orderdetail_ibfk_1` FOREIGN KEY (`od_no`) REFERENCES `book_order` (`o_no`),
-  CONSTRAINT `book_orderdetail_ibfk_2` FOREIGN KEY (`od_b_no`) REFERENCES `book` (`b_no`)
+  CONSTRAINT `book_orderdetail_ibfk_1` FOREIGN KEY (`od_no`) REFERENCES `book_order` (`o_no`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `book_orderdetail_ibfk_2` FOREIGN KEY (`od_b_no`) REFERENCES `book` (`b_no`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -140,7 +140,7 @@ CREATE TABLE `book_orderdetail` (
 
 LOCK TABLES `book_orderdetail` WRITE;
 /*!40000 ALTER TABLE `book_orderdetail` DISABLE KEYS */;
-INSERT INTO `book_orderdetail` VALUES ('od00001','B0005',1,999),('od00001','B0006',10,99),('od00002','B0001',7,800),('od00002','B0002',20,550);
+INSERT INTO `book_orderdetail` VALUES ('od00001','B00005',1,999),('od00001','B00006',10,99),('od00002','B00001',7,800),('od00002','B00002',20,550);
 /*!40000 ALTER TABLE `book_orderdetail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +187,7 @@ CREATE TABLE `membership` (
 
 LOCK TABLES `membership` WRITE;
 /*!40000 ALTER TABLE `membership` DISABLE KEYS */;
-INSERT INTO `membership` VALUES ('0001','王大明','0976-666-666','1946-10-01','美國',NULL),('0003','終於','7777-777-777','1946-01-01','台灣',NULL),('0004','王曉川','0900-000-000','1958-05-11','高雄',NULL),('0005','一定行','0000-000-000','2040-08-24','宜蘭',NULL),('0006','金雖小','0000-000-000','2015-01-01','台北',NULL),('0007','許大眼','0000-000-000','2020-05-18','彰化',NULL),('0008','再一次','0000-000-000','2222-02-22','屏東',NULL),('M00001','胖虎','7777-777-777','1994-10-01','日本',NULL),('M00002','小夫','6666-666-666','1993-10-01','日本',NULL),('M00003','大熊','5555-555-555','1994-10-01','日本',NULL),('M00004','靜香','0000-000-000','1994-01-10','日本',NULL),('M00005','張大山','5555-555-555','1999-10-01','加拿大',NULL);
+INSERT INTO `membership` VALUES ('M00001','胖虎','7777777777','1994-10-01','日本',NULL),('M00002','小夫','6666666666','1993-10-01','日本',NULL),('M00003','大熊','5555555555','1994-10-01','日本',NULL),('M00004','靜香','0000000000','1994-01-10','日本',NULL),('M00005','張大山','5555555555','1999-10-01','加拿大',NULL),('M00006','王大明','0976666666','1946-10-01','美國','abc@gmail.com'),('M00007','王大川','0958123456','1946-01-01','台灣',NULL),('M00008','王建民','0958777777','1946-01-10','台灣',NULL);
 /*!40000 ALTER TABLE `membership` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -236,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-22 13:52:12
+-- Dump completed on 2019-10-04 16:46:32
