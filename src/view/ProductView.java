@@ -50,90 +50,66 @@ public class ProductView extends JPanel
         final int WEST = GridBagConstraints.WEST;
 
         JLabel noLabel = new JLabel("*書本編號: ");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 0, 1, 1, WEST);
-        this.add(noLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, noLabel, 0, 0, 1, 1, WEST);
         JTextField noTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 0, 1, 1, WEST);
-        this.add(noTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, noTextField, 1, 0, 1, 1, WEST);
 
         JLabel nameLabel = new JLabel("*書名: ");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 1, 1, 1, WEST);
-        this.add(nameLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, nameLabel, 0, 1, 1, 1, WEST);
         JTextField nameTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 1, 1, 1, WEST);
-        this.add(nameTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, nameTextField, 1, 1, 1, 1, WEST);
 
         JLabel isbnJLabel = new JLabel("*ISBN: ");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 2, 1, 1, WEST);
-        this.add(isbnJLabel, constraints);
-        JTextField isbnTextField = new JTextField(15); // isbn 13碼
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 2, 1, 1, WEST);
-        this.add(isbnTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, isbnJLabel, 0, 2, 1, 1, WEST);
+        JTextField isbnTextField = new JTextField(15); // isbn13碼
+        MyGridBagLayout.getGridBagConstraints(this, isbnTextField, 1, 2, 1, 1, WEST);
 
         JLabel catnoLabel = new JLabel("類別: ");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 3, 1, 1, WEST);
-        this.add(catnoLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, catnoLabel, 0, 3, 1, 1, WEST);
         JTextField catnoTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 3, 1, 1, WEST);
-        this.add(catnoTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, catnoTextField, 1, 3, 1, 1, WEST);
 
         JLabel pubLabel = new JLabel("出版社: ");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 4, 1, 1, WEST);
-        this.add(pubLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, pubLabel, 0, 4, 1, 1, WEST);
         JTextField pubTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 4, 1, 1, WEST);
-        this.add(pubTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, pubTextField, 1, 4, 1, 1, WEST);
 
         JLabel unitLabel = new JLabel("單位: ");
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 0, 1, 1, EAST);
-        this.add(unitLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, unitLabel, 2, 0, 1, 1, EAST);
         JTextField uniTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 0, 3, 1, WEST);
-        this.add(uniTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, uniTextField, 3, 0, 3, 1, WEST);
 
         JLabel priceLabel = new JLabel("*定價: ");
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 1, 1, 1, EAST);
-        this.add(priceLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, priceLabel, 2, 1, 1, 1, EAST);
         JTextField priceTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 1, 3, 1, WEST);
-        this.add(priceTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, priceTextField, 3, 1, 3, 1, WEST);
 
         JLabel qtyLabel = new JLabel("*數量: ");
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 2, 1, 1, EAST);
-        this.add(qtyLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, qtyLabel, 2, 2, 1, 1, EAST);
         JTextField qtyTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 2, 3, 1, WEST);
-        this.add(qtyTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, qtyTextField, 3, 2, 3, 1, WEST);
 
         JLabel posLabel = new JLabel("儲位: ");
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 3, 1, 1, EAST);
-        this.add(posLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, posLabel, 2, 3, 1, 1, EAST);
         JTextField posTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 3, 3, 1, WEST);
-        this.add(posTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, posTextField, 3, 3, 3, 1, WEST);
 
         JLabel resultLabel = new JLabel("*號欄位不得為空");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 5, 0, 1, WEST);
+        MyGridBagLayout.getGridBagConstraints(this, resultLabel, 0, 5, 0, 1, WEST);
         resultLabel.setForeground(Color.red);
         resultLabel.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
-        this.add(resultLabel, constraints);
 
         // 按鈕
         JButton searchButton = new JButton("查詢");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 6, 1, 1, WEST);
-        this.add(searchButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, searchButton, 0, 6, 1, 1, WEST);
         JButton clearButton = new JButton("Reset");
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 6, 1, 1, WEST);
-        this.add(clearButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, clearButton, 2, 6, 1, 1, WEST);
         JButton addButton = new JButton("新增");
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 6, 1, 1, WEST);
-        this.add(addButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, addButton, 3, 6, 1, 1, WEST);
         JButton updataButton = new JButton("修改");
-        constraints = MyGridBagLayout.getGridBagConstraints(4, 6, 1, 1, WEST);
-        this.add(updataButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, updataButton, 4, 6, 1, 1, WEST);
         JButton delButton = new JButton("刪除");
-        constraints = MyGridBagLayout.getGridBagConstraints(5, 6, 1, 1, WEST);
-        this.add(delButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, delButton, 5, 6, 1, 1, WEST);
 
         ArrayList<JLabel> lblArrayList = new ArrayList<>(); // Jlable 陣列
         ArrayList<JTextField> textArrayList = new ArrayList<>(); // textField 陣列
@@ -216,7 +192,6 @@ public class ProductView extends JPanel
         // 新增
         addButton.addActionListener((ActionEvent e) ->
         {
-            
 
             int check = JOptionPane.showConfirmDialog(panel, "是否要新增資料?", "新增", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
@@ -225,23 +200,25 @@ public class ProductView extends JPanel
 
             if (check == JOptionPane.YES_OPTION)
             {
-            	
-            	LinkedHashMap<String, String> map = new LinkedHashMap<>();
+
+                LinkedHashMap<String, String> map = new LinkedHashMap<>();
                 for (JTextField jTextField : textArrayList) // 把textfield資料丟進map
                 {
                     System.out.println(jTextField.getName() + "," + jTextField.getText());
                     map.put(jTextField.getName(), jTextField.getText());
                 }
-            	
-            	
-            	String message = DataCheckControl.productCheck(tableName, map);//判斷資料是否新增成功
-            	if(message.equals("成功")) {
-            		isSuccess = TableControl.addTableData(tableName, map, (MyTableModel) table.getModel());
-            		if(isSuccess == true) JOptionPane.showMessageDialog(panel, "新增"+message);            		
-            	}else {
-            		JOptionPane.showMessageDialog(panel, message);
-            	}
-                
+
+                String message = DataCheckControl.productCheck(tableName, map);// 判斷資料是否新增成功
+                if (message.equals("成功"))
+                {
+                    isSuccess = TableControl.addTableData(tableName, map, (MyTableModel) table.getModel());
+                    if (isSuccess == true)
+                        JOptionPane.showMessageDialog(panel, "新增" + message);
+                } else
+                {
+                    JOptionPane.showMessageDialog(panel, message);
+                }
+
             }
 
             if (isSuccess)
@@ -274,18 +251,17 @@ public class ProductView extends JPanel
                     {
                         map.put(jTextField.getName(), jTextField.getText());
                     }
-                    
-                    
-                    String message = DataCheckControl.productCheck(tableName, map);
-                    if(message.equals("成功")) { //做型態檢查
-                    	isSuccess = TableControl.updataTableData(tableName, map, row, model);
-                    	if(isSuccess == true) JOptionPane.showMessageDialog(panel, "更新"+message);
-                    }else {
-                    	JOptionPane.showMessageDialog(panel,message);
-                    }
-                    
 
-                    
+                    String message = DataCheckControl.productCheck(tableName, map);
+                    if (message.equals("成功"))
+                    { // 做型態檢查
+                        isSuccess = TableControl.updataTableData(tableName, map, row, model);
+                        if (isSuccess == true)
+                            JOptionPane.showMessageDialog(panel, "更新" + message);
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(panel, message);
+                    }
 
                     if (isSuccess) // 修改提示label訊息
                     {

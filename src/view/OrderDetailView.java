@@ -52,84 +52,62 @@ public class OrderDetailView extends JPanel
         int EAST = GridBagConstraints.EAST;
 
         JLabel noLabel = new JLabel("訂單編號");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 0, 1, 1, EAST);
-        add(noLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, noLabel, 0, 0, 1, 1, EAST);
         noTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 0, 1, 1, EAST);
-        add(noTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, noTextField, 1, 0, 1, 1, EAST);
 
         JLabel b_noLabel = new JLabel("書本編號");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 1, 1, 1, EAST);
-        add(b_noLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, b_noLabel, 0, 1, 1, 1, EAST);
         JTextField b_noTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 1, 1, 1, EAST);
-        add(b_noTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, b_noTextField, 1, 1, 1, 1, EAST);
 
         JLabel b_nameLabel = new JLabel("書名");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 2, 1, 1, EAST);
-        add(b_nameLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, b_nameLabel, 0, 2, 1, 1, EAST);
         JTextField b_nameTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 2, 1, 1, EAST);
-        add(b_nameTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, b_nameTextField, 1, 2, 1, 1, EAST);
 
         JLabel b_isbnLabel = new JLabel("ISBN");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 3, 1, 1, EAST);
-        add(b_isbnLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, b_isbnLabel, 0, 3, 1, 1, EAST);
         JTextField b_isbnTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 3, 1, 1, EAST);
-        add(b_isbnTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, b_isbnTextField, 1, 3, 1, 1, EAST);
 
         JLabel b_catnoLabel = new JLabel("類別");
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 0, 1, 1, EAST);
-        add(b_catnoLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, b_catnoLabel, 2, 0, 1, 1, EAST);
         JTextField b_catnoTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 0, 4, 1, GridBagConstraints.WEST);
-        add(b_catnoTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, b_catnoTextField, 3, 0, 4, 1, GridBagConstraints.WEST);
 
         JLabel b_unitLabel = new JLabel("單位");
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 1, 1, 1, EAST);
-        add(b_unitLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, b_unitLabel, 2, 1, 1, 1, EAST);
         JTextField b_unitTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 1, 4, 1, GridBagConstraints.WEST);
-        add(b_unitTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, b_unitTextField, 3, 1, 4, 1, GridBagConstraints.WEST);
 
         JLabel qtyLabel = new JLabel("數量");
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 2, 1, 1, EAST);
-        add(qtyLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, qtyLabel, 2, 2, 1, 1, EAST);
         JTextField qtyTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 2, 4, 1, GridBagConstraints.WEST);
-        add(qtyTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, qtyTextField, 3, 2, 4, 1, GridBagConstraints.WEST);
 
         JLabel priceLabel = new JLabel("售價");
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 3, 1, 1, EAST);
-        add(priceLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, priceLabel, 2, 3, 1, 1, EAST);
         JTextField priceTextField = new JTextField(15);
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 3, 4, 1, GridBagConstraints.WEST);
-        add(priceTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, priceTextField, 3, 3, 4, 1, GridBagConstraints.WEST);
 
         JLabel resultLabel = new JLabel("*號欄位不得為空");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 4, 0, 1, GridBagConstraints.WEST);
-        add(resultLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, resultLabel, 0, 4, 0, 1, GridBagConstraints.WEST);
         resultLabel.setForeground(Color.red);
 
+        // 按鈕
         JButton searchButton = new JButton("搜尋");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 5, 1, 1, GridBagConstraints.WEST);
-        add(searchButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, searchButton, 0, 5, 1, 1, GridBagConstraints.WEST);
         JButton selectButton = new JButton("選擇商品");
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 5, 1, 1, GridBagConstraints.WEST);
-        add(selectButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, selectButton, 1, 5, 1, 1, GridBagConstraints.WEST);
         JButton clearButton = new JButton("清除");
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 5, 1, 1, GridBagConstraints.WEST);
-        add(clearButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, clearButton, 3, 5, 1, 1, GridBagConstraints.WEST);
         JButton addButton = new JButton("新增");
-        constraints = MyGridBagLayout.getGridBagConstraints(4, 5, 1, 1, GridBagConstraints.WEST);
-        add(addButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, addButton, 4, 5, 1, 1, GridBagConstraints.WEST);
         JButton updateButton = new JButton("修改");
-        constraints = MyGridBagLayout.getGridBagConstraints(5, 5, 1, 1, GridBagConstraints.WEST);
-        add(updateButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, updateButton, 5, 5, 1, 1, GridBagConstraints.WEST);
         JButton delButton = new JButton("刪除");
-        constraints = MyGridBagLayout.getGridBagConstraints(6, 5, 1, 1, GridBagConstraints.WEST);
-        add(delButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, delButton, 6, 5, 1, 1, GridBagConstraints.WEST);
 
         ArrayList<JLabel> lblList = new ArrayList<>(); // 存放所有jlabel
         ArrayList<JTextField> textList = new ArrayList<>();// 存放所有 jtextfield
@@ -242,16 +220,14 @@ public class OrderDetailView extends JPanel
         addButton.addActionListener((ActionEvent e) ->
         {
 
-            
-
             int check = JOptionPane.showConfirmDialog(panel, "是否要新增資料?", "新增", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
             boolean isSuccess = false;
 
             if (check == JOptionPane.YES_OPTION)
             {
-            	
-            	LinkedHashMap<String, String> mapForDatabase = new LinkedHashMap<>(); // 給資料庫的資料
+
+                LinkedHashMap<String, String> mapForDatabase = new LinkedHashMap<>(); // 給資料庫的資料
                 LinkedHashMap<String, String> mapForModel = new LinkedHashMap<>(); // 給model的資料
 
                 for (int i = 0; i < textList.size(); i++)
@@ -266,18 +242,21 @@ public class OrderDetailView extends JPanel
                     }
 
                 }
-            	
+
                 String message = DataCheckControl.orderDtCheck(tableName, mapForModel);
-                
-                if(message.equals("成功")) {
-                	// 新增資料可以直接進去view裡面，所以在這裡直接給view名稱就可以，不必給實體資料表名稱
+
+                if (message.equals("成功"))
+                {
+                    // 新增資料可以直接進去view裡面，所以在這裡直接給view名稱就可以，不必給實體資料表名稱
                     isSuccess = TableControl.add2TableData(tableName, mapForDatabase, mapForModel,
                             (MyTableModel) table.getModel());
-                    if(isSuccess) JOptionPane.showMessageDialog(panel, "更新"+message);
-                }else {
-                	JOptionPane.showMessageDialog(panel, message);
+                    if (isSuccess)
+                        JOptionPane.showMessageDialog(panel, "更新" + message);
+                } else
+                {
+                    JOptionPane.showMessageDialog(panel, message);
                 }
-                
+
             }
 
             if (isSuccess)

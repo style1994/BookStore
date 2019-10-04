@@ -31,84 +31,47 @@ import service.ProductTable;
 
 public class MainFrame extends JFrame
 {
-    ArrayList<JMenu> jMenuList;
-    ArrayList<JMenuItem> jMenuItemList;
+    private ArrayList<JMenu> jMenuList;
+    private ArrayList<JMenuItem> jMenuItemList;
+    private JFrame jfrm = this; // 代表這張mian view
+    private JSplitPane contentPane;
 
-    JFrame jfrm = this;
-    LoginView loginView;
+    String useing_table; // 紀錄上半部現在是哪個維護哪個資料表
 
-    JMenuBar menuBar;
-    JMenu memberJMenu;
-    JMenu productJMenu;
-    JMenu salesJMenu;
-    JMenu purchaseJMenu;
-    JMenu orderJMenu;
-    JMenu otherJMenu;
-
-    JMenuItem memberQuery;
-    JMenuItem memberMaintain;
-    JMenuItem productQuery;
-    JMenuItem productMaintain;
-    JMenuItem salesQuery;
-    JMenuItem salesMaintain;
-    JMenuItem purchaseQuery;
-    JMenuItem purchaseMaintain;
-    JMenuItem orderQuery;
-    JMenuItem orderMaintain;
-    JMenuItem logout;
-    JMenuItem exit;
-
-    JSplitPane contentPane;
-
-    String useing_table; // 旗標 紀錄上半部現在是哪個維護哪個資料表
-
-    public MainFrame(LoginView loginView)
+    public MainFrame()
     {
 
-        this.loginView = loginView;
-
+        // 設定視窗icon
         Image icon = new ImageIcon("./image/book.png").getImage();
         setIconImage(icon);
 
-        menuBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
         menuBar.setBackground(Color.white);
 
-        memberJMenu = new JMenu("會員");
-        productJMenu = new JMenu("商品");
-        salesJMenu = new JMenu("銷售");
-        purchaseJMenu = new JMenu("進貨");
-        orderJMenu = new JMenu("訂單");
-        otherJMenu = new JMenu("其他");
+        JMenu memberJMenu = new JMenu("會員");
+        JMenu productJMenu = new JMenu("商品");
+        JMenu orderJMenu = new JMenu("訂單");
+        JMenu otherJMenu = new JMenu("其他");
 
-        memberMaintain = new JMenuItem("會員資料 維護");
+        JMenuItem memberMaintain = new JMenuItem("會員資料 維護");
+        JMenuItem productMaintain = new JMenuItem("商品資料 維護");
+        JMenuItem orderMaintain = new JMenuItem("訂單資料 維護");
 
-        productMaintain = new JMenuItem("商品資料 維護");
-        salesQuery = new JMenuItem("銷售資料 查詢");
-        salesMaintain = new JMenuItem("銷售資料 維護");
-        purchaseQuery = new JMenuItem("進貨資料 查詢");
-        purchaseMaintain = new JMenuItem("進貨資料 維護");
+        JMenuItem logout = new JMenuItem("登出");
+        JMenuItem exit = new JMenuItem("結束");
 
-        orderMaintain = new JMenuItem("訂單資料 維護");
-        logout = new JMenuItem("登出");
-        exit = new JMenuItem("結束");
-
+        // 將各jmenu加到jmenubar上
         menuBar.add(otherJMenu);
         menuBar.add(memberJMenu);
         menuBar.add(productJMenu);
-        menuBar.add(purchaseJMenu);
         menuBar.add(orderJMenu);
-        menuBar.add(salesJMenu);
 
+        // 將各menuitem加到jmenu
         otherJMenu.add(logout);
         otherJMenu.add(exit);
         memberJMenu.add(memberMaintain);
         productJMenu.add(productMaintain);
-        purchaseJMenu.add(purchaseQuery);
-        purchaseJMenu.add(purchaseMaintain);
-
         orderJMenu.add(orderMaintain);
-        salesJMenu.add(salesQuery);
-        salesJMenu.add(salesMaintain);
 
         // 把menu menuItem加到list方便統一操作
         jMenuList = new ArrayList<>();
@@ -117,22 +80,13 @@ public class MainFrame extends JFrame
         jMenuList.add(otherJMenu);
         jMenuList.add(memberJMenu);
         jMenuList.add(productJMenu);
-        jMenuList.add(purchaseJMenu);
         jMenuList.add(orderJMenu);
-        jMenuList.add(salesJMenu);
 
         jMenuItemList.add(logout);
         jMenuItemList.add(exit);
 
         jMenuItemList.add(memberMaintain);
         jMenuItemList.add(productMaintain);
-        jMenuItemList.add(salesQuery);
-        jMenuItemList.add(salesMaintain);
-        jMenuItemList.add(purchaseQuery);
-        jMenuItemList.add(purchaseMaintain);
-        jMenuItemList.add(purchaseQuery);
-        jMenuItemList.add(purchaseMaintain);
-
         jMenuItemList.add(orderMaintain);
 
         for (JMenu obj : jMenuList)
@@ -172,11 +126,11 @@ public class MainFrame extends JFrame
             }
         });
 
-        // menuItem exit 監聽
+        // 退出
         exit.addActionListener((ActionEvent e) ->
         {
 
-            int check = JOptionPane.showConfirmDialog(jfrm, "確認訊息", "確定要離開嗎?", JOptionPane.YES_NO_OPTION,
+            int check = JOptionPane.showConfirmDialog(jfrm, "確定要離開嗎", "確認訊息", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
 
             if (check == JOptionPane.YES_OPTION)
@@ -186,11 +140,11 @@ public class MainFrame extends JFrame
 
         });
 
-        // menuItem logout 監聽
+        // 登出
         logout.addActionListener((ActionEvent e) ->
         {
 
-            int check = JOptionPane.showConfirmDialog(jfrm, "確認訊息", "確定要登出嗎?", JOptionPane.YES_NO_OPTION,
+            int check = JOptionPane.showConfirmDialog(jfrm, "確定要登出", "確認訊息", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
 
             if (check == JOptionPane.YES_OPTION)

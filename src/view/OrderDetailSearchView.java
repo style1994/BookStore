@@ -24,7 +24,7 @@ public class OrderDetailSearchView extends JPanel
     private JTable table;
     private JPanel panel = this;
     private int count = 1;
-    private String tableName; //book_order_view
+    private String tableName; // book_order_view
 
     public OrderDetailSearchView(JTable table, String tableName)
     {
@@ -40,20 +40,17 @@ public class OrderDetailSearchView extends JPanel
 
         Vector<Vector<Object>> list = new Vector<>(); // 儲存實例出來的視窗原件(按按鈕產生的)
 
-        String[] colArray = { "欄位", "訂單編號", "書本編號", "書名", "ISBN", "類別", "單位","數量","售價"};
+        String[] colArray = { "欄位", "訂單編號", "書本編號", "書名", "ISBN", "類別", "單位", "數量", "售價" };
         String[] logicArray = { "查詢條件", "=", ">", "<", ">=", "<=", "!=", "Like" };
 
         JButton addRow = new JButton("+");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 0, 1, 1, west);
-        this.add(addRow, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, addRow, 0, 0, 1, 1, GridBagConstraints.CENTER);
 
         JButton okButton = new JButton("確認");
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 0, 1, 1, west);
-        this.add(okButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, okButton, 1, 0, 1, 1, GridBagConstraints.CENTER);
 
         JButton clearButton = new JButton("清除");
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 0, 1, 1, west);
-        this.add(clearButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, clearButton, 2, 0, 1, 1, GridBagConstraints.CENTER);
 
         // 新增搜尋條件事件
         addRow.addActionListener((ActionEvent e) ->
@@ -68,14 +65,9 @@ public class OrderDetailSearchView extends JPanel
             vector.add(logicComboBox);
             vector.add(myText);
 
-            GridBagConstraints c = MyGridBagLayout.getGridBagConstraints(0, count, 1, 1, east);
-            panel.add(colComboBox, c);
-
-            c = MyGridBagLayout.getGridBagConstraints(1, count, 1, 1, east);
-            panel.add(logicComboBox, c);
-
-            c = MyGridBagLayout.getGridBagConstraints(2, count, 1, 1, east);
-            panel.add(myText, c);
+            MyGridBagLayout.getGridBagConstraints(panel, colComboBox, 0, count, 1, 1, east);
+            MyGridBagLayout.getGridBagConstraints(panel, logicComboBox, 1, count, 1, 1, east);
+            MyGridBagLayout.getGridBagConstraints(panel, myText, 2, count, 1, 1, east);
 
             list.add(vector);
 
@@ -115,7 +107,6 @@ public class OrderDetailSearchView extends JPanel
                     case "售價":
                         colComboBox.setName("od_price");
                         break;
-                    
 
                 }
 
@@ -176,7 +167,7 @@ public class OrderDetailSearchView extends JPanel
         });
 
     }
-    
+
     @Override
     public void paintComponent(Graphics g)
     {

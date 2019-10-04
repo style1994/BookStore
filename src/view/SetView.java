@@ -30,50 +30,37 @@ public class SetView extends JPanel
         int EAST = GridBagConstraints.EAST;
 
         JLabel ipLabel = new JLabel("ip:");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 0, 1, 1, EAST);
-        this.add(ipLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, ipLabel, 0, 0, 1, 1, EAST);
         JTextField ipTextField = new JTextField(10);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 0, 1, 1, EAST);
-        this.add(ipTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, ipTextField, 1, 0, 1, 1, EAST);
 
         JLabel portLabel = new JLabel("port:");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 1, 1, 1, EAST);
-        this.add(portLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, portLabel, 0, 1, 1, 1, EAST);
         JTextField portTextField = new JTextField(10);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 1, 1, 1, EAST);
-        this.add(portTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, portTextField, 1, 1, 1, 1, EAST);
 
         JLabel dbNameLabel = new JLabel("資料庫名稱:");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 2, 1, 1, EAST);
-        this.add(dbNameLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, dbNameLabel, 0, 2, 1, 1, EAST);
         JTextField dbNameTextField = new JTextField(10);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 2, 1, 1, EAST);
-        this.add(dbNameTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, dbNameTextField, 1, 2, 1, 1, EAST);
 
         JLabel userJLabel = new JLabel("資料庫帳號:");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 3, 1, 1, EAST);
-        this.add(userJLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, userJLabel, 0, 3, 1, 1, EAST);
         JTextField userTextField = new JTextField(10);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 3, 1, 1, EAST);
-        this.add(userTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, userTextField, 1, 3, 1, 1, EAST);
 
         JLabel passwordLabel = new JLabel("資料庫密碼:");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 4, 1, 1, EAST);
-        this.add(passwordLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, passwordLabel, 0, 4, 1, 1, EAST);
         JTextField passwordTextField = new JTextField(10);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 4, 1, 1, EAST);
-        this.add(passwordTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, passwordTextField, 1, 4, 1, 1, EAST);
 
         JLabel resultLabel = new JLabel();
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 5, 0, 1, EAST);
-        this.add(resultLabel, constraints);
-
+        MyGridBagLayout.getGridBagConstraints(this, resultLabel, 0, 5, 0, 1, EAST);
         JButton okButton = new JButton("確認");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 6, 1, 1, EAST);
-        this.add(okButton, constraints);
+
+        MyGridBagLayout.getGridBagConstraints(this, okButton, 0, 6, 1, 1, EAST);
         JButton clearButton = new JButton("清除");
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 6, 1, 1, GridBagConstraints.WEST);
-        this.add(clearButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, clearButton, 1, 6, 1, 1, GridBagConstraints.WEST);
 
         ArrayList<JTextField> textFields = new ArrayList<>();
         textFields.add(ipTextField);

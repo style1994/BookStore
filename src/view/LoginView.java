@@ -17,25 +17,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 
 public class LoginView extends JFrame
 {
-    LoginView loginView = this;
 
-    JLabel lblAcc;
-    JLabel lblPwd;
-    JLabel lblTitle;
-    JLabel lblResult; // 顯示登入訊息的label
-    JTextField fieldAcc;
-    JPasswordField fieldPwd;
-
-    JButton btnOk;
-    JButton btnCancel;
-    JPanel contentJPane;
-
-    JTable table;
+    private LoginView loginView = this;
 
     public LoginView()
     {
@@ -49,8 +36,9 @@ public class LoginView extends JFrame
         Image icon = new ImageIcon("./image/book.png").getImage(); // 設定圖標
         setIconImage(icon);
 
-        contentJPane = new JPanel()
-        { // 在這裡放背景圖
+        JPanel contentJPane = new JPanel()
+        {
+            // 放背景圖
             @Override
             public void paintComponent(Graphics g)
             {
@@ -61,45 +49,45 @@ public class LoginView extends JFrame
         setContentPane(contentJPane);
         contentJPane.setLayout(null);
 
-        lblTitle = new JLabel();
+        JLabel lblTitle = new JLabel();
         lblTitle.setText("二 手 書 管 理 系 統");
         lblTitle.setFont(new Font("微軟正黑體", Font.BOLD, 20));
         lblTitle.setSize(180, 30);
         lblTitle.setLocation((350 - 180) / 2, 50);
 
-        lblAcc = new JLabel();
+        JLabel lblAcc = new JLabel();
         lblAcc.setText("帳號: ");
         lblAcc.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
         lblAcc.setSize(60, 30);
         lblAcc.setLocation(55, 120);
 
-        lblPwd = new JLabel();
+        JLabel lblPwd = new JLabel();
         lblPwd.setText("密碼: ");
         lblPwd.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
         lblPwd.setSize(60, 30);
         lblPwd.setLocation(55, 155);
 
-        fieldAcc = new JTextField(12);
+        JTextField fieldAcc = new JTextField(12);
         fieldAcc.setFont(new Font("微軟正黑體", Font.BOLD, 12));
         fieldAcc.setSize(150, 30);
         fieldAcc.setLocation(100, 120);
 
-        fieldPwd = new JPasswordField(12);
+        JPasswordField fieldPwd = new JPasswordField(12);
         fieldPwd.setFont(new Font("微軟正黑體", Font.BOLD, 12));
         fieldPwd.setSize(150, 30);
         fieldPwd.setLocation(100, 155);
 
-        btnOk = new JButton("登入");
+        JButton btnOk = new JButton("登入");
         btnOk.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
         btnOk.setSize(210, 30);
         btnOk.setLocation(55, 200);
 
-        btnCancel = new JButton("清除");
+        JButton btnCancel = new JButton("清除");
         btnCancel.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
         btnCancel.setSize(210, 30);
         btnCancel.setLocation(55, 240);
 
-        lblResult = new JLabel("");
+        JLabel lblResult = new JLabel("");
         lblResult.setForeground(Color.red);
         lblResult.setFont(new Font("微軟正黑體", Font.BOLD, 14));
         lblResult.setSize(210, 30);
@@ -137,20 +125,29 @@ public class LoginView extends JFrame
 
                 String check = control.LoginControl.login(account, password); // 呼叫控制類別的靜態方法
 
-                if (Integer.parseInt(check) > 0)
+                if (Integer.parseInt(check) > 0) // 傳回>0的數字代表帳號的權限
                 {
-                    new MainFrame(loginView);
+
+                    new MainFrame();
                     loginView.dispose();
+
                 } else if (Integer.parseInt(check) == -1)
                 {
+
                     lblResult.setText("帳號密碼錯誤");
+
                 } else if (Integer.parseInt(check) == -2)
                 {
+
                     lblResult.setText("資料庫連接失敗，請檢查設定");
+
                 }
+
             } else
             {
+
                 lblResult.setText("請填寫帳號密碼");
+
             }
 
         });
@@ -178,6 +175,7 @@ public class LoginView extends JFrame
 
     }
 
+    // 程式進入點
     public static void main(String[] args)
     {
         new LoginView();

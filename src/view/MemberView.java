@@ -31,11 +31,11 @@ import service.MyTableModel;
 
 public class MemberView extends JPanel
 {
-    JTable table;
-    JPanel panel; // 儲存自己的參照，再JOptionpanel有用
-    ListSelectionModel select;
+    private JTable table;
+    private JPanel panel; // 儲存自己的參照，再JOptionpanel有用
+    private ListSelectionModel select;
 
-    final static String tableName = "membership"; // 儲存資料表名稱
+    private final static String tableName = "membership"; // 儲存資料表名稱
 
     public MemberView(JTable table)
     {
@@ -49,75 +49,60 @@ public class MemberView extends JPanel
         setLayout(new GridBagLayout());
         setBackground(new Color(135, 210, 220)); // 藍色
 
-        GridBagConstraints constraints;
         int east = GridBagConstraints.EAST;
         int west = GridBagConstraints.WEST;
 
         // 原件的排版
         JLabel noLabel = new JLabel("*會員編號: ");
         JTextField noTextField = new JTextField(10);
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 0, 1, 1, east);
-        this.add(noLabel, constraints);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 0, 1, 1, east);
-        this.add(noTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, noLabel, 0, 0, 1, 1, east);
+        MyGridBagLayout.getGridBagConstraints(this, noTextField, 1, 0, 1, 1, east);
 
         JLabel nameLabel = new JLabel("*會員名稱: ");
         JTextField nameTextField = new JTextField(10);
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 1, 1, 1, east);
-        this.add(nameLabel, constraints);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 1, 1, 1, east);
-        this.add(nameTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, nameLabel, 0, 1, 1, 1, east);
+        MyGridBagLayout.getGridBagConstraints(this, nameTextField, 1, 1, 1, 1, east);
 
         JLabel telLabel = new JLabel("*電話: ");
         JTextField telTextField = new JTextField(10);
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 2, 1, 1, east);
-        this.add(telLabel, constraints);
-        constraints = MyGridBagLayout.getGridBagConstraints(1, 2, 1, 1, east);
-        this.add(telTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, telLabel, 0, 2, 1, 1, east);
+        MyGridBagLayout.getGridBagConstraints(this, telTextField, 1, 2, 1, 1, east);
 
         JLabel birLabel = new JLabel("生日: ");
         JTextField birTextField = new JTextField(10);
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 0, 1, 1, east);
-        this.add(birLabel, constraints);
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 0, 1, 1, west);
-        this.add(birTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, birLabel, 2, 0, 1, 1, east);
+        MyGridBagLayout.getGridBagConstraints(this, birTextField, 3, 0, 1, 1, west);
 
         JLabel addrLabel = new JLabel("地址: ");
         JTextField addrTextField = new JTextField(25);
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 1, 1, 1, east);
-        this.add(addrLabel, constraints);
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 1, 4, 1, west);
-        this.add(addrTextField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, addrLabel, 2, 1, 1, 1, east);
+        MyGridBagLayout.getGridBagConstraints(this, addrTextField, 3, 1, 4, 1, west);
 
         JLabel emaiLabel = new JLabel("Email: ");
         JTextField emailField = new JTextField(25);
-        constraints = MyGridBagLayout.getGridBagConstraints(2, 2, 1, 1, east);
-        this.add(emaiLabel, constraints);
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 2, 4, 1, west);
-        this.add(emailField, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, emaiLabel, 2, 2, 1, 1, east);
+        MyGridBagLayout.getGridBagConstraints(this, emailField, 3, 2, 4, 1, west);
 
         JLabel resultLabel = new JLabel("*號攔位不得為空");// 提示使用者訊息用Label
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 3, 0, 1, west);
-        this.add(resultLabel, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, resultLabel, 0, 3, 0, 1, west);
         resultLabel.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
         resultLabel.setForeground(Color.red);
 
         // 按鈕
         JButton searchButton = new JButton("搜尋");
-        constraints = MyGridBagLayout.getGridBagConstraints(0, 4, 1, 1, east);
-        this.add(searchButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, searchButton, 0, 4, 1, 1, east);
+
         JButton cancleButton = new JButton("Reset");
-        constraints = MyGridBagLayout.getGridBagConstraints(3, 4, 1, 1, east);
-        this.add(cancleButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, cancleButton, 3, 4, 1, 1, east);
+
         JButton addButton = new JButton("新增");
-        constraints = MyGridBagLayout.getGridBagConstraints(4, 4, 1, 1, east);
-        this.add(addButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, addButton, 4, 4, 1, 1, east);
+
         JButton updataButton = new JButton("修改");
-        constraints = MyGridBagLayout.getGridBagConstraints(5, 4, 1, 1, east);
-        this.add(updataButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, updataButton, 5, 4, 1, 1, east);
+
         JButton delButton = new JButton("刪除");
-        constraints = MyGridBagLayout.getGridBagConstraints(6, 4, 0, 1, east);
-        this.add(delButton, constraints);
+        MyGridBagLayout.getGridBagConstraints(this, delButton, 6, 4, 0, 1, east);
 
         ArrayList<JLabel> labelList = new ArrayList<>(); // jlabel集合，做統一操作用
         labelList.add(noLabel);
@@ -217,10 +202,11 @@ public class MemberView extends JPanel
                 if (message.equals("成功"))
                 {
                     isSuccess = TableControl.addTableData(tableName, map, (MyTableModel) table.getModel());
-                    if(isSuccess == true) JOptionPane.showMessageDialog(panel, "新增"+message);
+                    if (isSuccess == true)
+                        JOptionPane.showMessageDialog(panel, "新增" + message);
                 } else
                 {
-                    JOptionPane.showMessageDialog(panel,message);
+                    JOptionPane.showMessageDialog(panel, message);
                 }
 
                 if (isSuccess)
@@ -282,16 +268,17 @@ public class MemberView extends JPanel
                     {
                         map.put(jTextField.getName(), jTextField.getText());
                     }
-                    
-                    String message = DataCheckControl.memberCheck(tableName, map); //做資料檢查
-                    if(message.equals("成功")) {
-                    	isSuccess = TableControl.updataTableData(tableName, map, row, model);
-                    	if(isSuccess == true) JOptionPane.showMessageDialog(panel, "更新"+message);
-                    }else {
-                    	JOptionPane.showMessageDialog(panel, message);
-					}
 
-                    
+                    String message = DataCheckControl.memberCheck(tableName, map); // 做資料檢查
+                    if (message.equals("成功"))
+                    {
+                        isSuccess = TableControl.updataTableData(tableName, map, row, model);
+                        if (isSuccess == true)
+                            JOptionPane.showMessageDialog(panel, "更新" + message);
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(panel, message);
+                    }
 
                     if (isSuccess)
                     {
