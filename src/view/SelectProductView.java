@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import control.TableControl;
-import service.MemberTable;
 import service.MyTableModel;
 import service.ProductTable;
 
@@ -40,7 +39,7 @@ public class SelectProductView extends JFrame
         pack();
         setVisible(true);
 
-        // 在滑鼠雙擊時設定orderView上的textField
+        // 在滑鼠雙擊時設定textField
         productTable.addMouseListener(new MouseAdapter()
         {
 

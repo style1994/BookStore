@@ -2,6 +2,7 @@ package service;
 
 import java.util.Vector;
 
+//紀錄OrderView表格的相關訊息
 public class OrderTable
 {
     final public static String tableName = "book_order_view";
@@ -23,11 +24,10 @@ public class OrderTable
 
             column.add((String) vector.get(0));
             type.add((String) vector.get(1));
-//            isNull.add((Boolean) vector.get(2));
-            // primaryKey.add((Boolean) vector.get(3));
 
         }
-        
+
+        // VIEW無法直接透過DESC查到欄位是否為空，這裡選擇直接加
         isNull.add(false);
         isNull.add(false);
         isNull.add(false);
@@ -35,6 +35,7 @@ public class OrderTable
         isNull.add(false);
         isNull.add(false);
 
+        // VIEW無法直接透過DESC查到欄位是否為PK，這裡選擇直接加
         primaryKey.add(true);
         primaryKey.add(false);
         primaryKey.add(false);
@@ -42,6 +43,7 @@ public class OrderTable
         primaryKey.add(false);
         primaryKey.add(false);
 
+        // 要顯示給使用者看到的攔位名稱
         columnName.add("訂單編號");
         columnName.add("訂單日期");
         columnName.add("會員編號");

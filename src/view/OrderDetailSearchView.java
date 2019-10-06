@@ -34,9 +34,8 @@ public class OrderDetailSearchView extends JPanel
         this.setLayout(new GridBagLayout());
 
         // 排版
-        GridBagConstraints constraints;
+
         int east = GridBagConstraints.EAST;
-        int west = GridBagConstraints.WEST;
 
         Vector<Vector<Object>> list = new Vector<>(); // 儲存實例出來的視窗原件(按按鈕產生的)
 
@@ -72,16 +71,15 @@ public class OrderDetailSearchView extends JPanel
             list.add(vector);
 
             panel.updateUI();
-            ;
+
             count++;
 
             colComboBox.addItemListener((ItemEvent item) ->
             {
 
                 String str = (String) item.getItem();
-                JComboBox<String> obj = (JComboBox<String>) item.getSource();
 
-                switch (str) // combobox欄位被選取時設定相對應欄位名稱
+                switch (str) // ComboBox欄位被選取時設定相對應欄位名稱
                 {
                     case "訂單編號":
                         colComboBox.setName("od_no");
@@ -146,7 +144,8 @@ public class OrderDetailSearchView extends JPanel
             }
 
             where.delete(where.length() - 4, where.length() - 1);
-            System.out.println(where);
+
+            System.out.println(where); // 檢查用print
 
             TableControl.reloadTableData(tableName, where.toString(), (MyTableModel) table.getModel());
 

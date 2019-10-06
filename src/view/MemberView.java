@@ -128,7 +128,7 @@ public class MemberView extends JPanel
             JLabel myLabel = labelList.get(i);
             JTextField myTextField = textFieldList.get(i);
 
-            myLabel.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
+            myLabel.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
             myTextField.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
         }
 

@@ -76,7 +76,7 @@ public class MemberSearchView extends JPanel
 
                 String str = (String) item.getItem();
 
-                switch (str) // combobox欄位被選取時設定相對應欄位名稱
+                switch (str) // ComboBox欄位被選取時設定相對應欄位名稱
                 {
                     case "會員編號":
                         colComboBox.setName("m_no");
@@ -136,7 +136,7 @@ public class MemberSearchView extends JPanel
 
             where.delete(where.length() - 4, where.length() - 1);
 
-            System.out.println(where); // 檢查sql拼接用
+            System.out.println(where); // 檢查SQL拼接用
 
             TableControl.reloadTableData(tableName, where.toString(), (MyTableModel) table.getModel());
 

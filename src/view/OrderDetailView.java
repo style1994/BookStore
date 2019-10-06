@@ -48,7 +48,7 @@ public class OrderDetailView extends JPanel
         setLayout(new GridBagLayout());
 
         // 排版
-        GridBagConstraints constraints;
+
         int EAST = GridBagConstraints.EAST;
 
         JLabel noLabel = new JLabel("訂單編號");
@@ -109,9 +109,9 @@ public class OrderDetailView extends JPanel
         JButton delButton = new JButton("刪除");
         MyGridBagLayout.getGridBagConstraints(this, delButton, 6, 5, 1, 1, GridBagConstraints.WEST);
 
-        ArrayList<JLabel> lblList = new ArrayList<>(); // 存放所有jlabel
-        ArrayList<JTextField> textList = new ArrayList<>();// 存放所有 jtextfield
-        ArrayList<JButton> btnList = new ArrayList<>(); // 存放所有jbutton
+        ArrayList<JLabel> lblList = new ArrayList<>(); // 存放所有JLabel
+        ArrayList<JTextField> textList = new ArrayList<>();// 存放所有 JTextField
+        ArrayList<JButton> btnList = new ArrayList<>(); // 存放所有JButton
 
         lblList.add(noLabel);
         lblList.add(b_noLabel);
@@ -141,7 +141,7 @@ public class OrderDetailView extends JPanel
 
         for (JLabel lbl : lblList)
         {
-            lbl.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
+            lbl.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
         }
 
         for (int i = 0; i < textList.size(); i++)
@@ -150,7 +150,7 @@ public class OrderDetailView extends JPanel
             myTextField.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
 
             Vector<String> column = OrderDtTable.column;
-            myTextField.setName(column.get(i)); // 設定每個textfield的name,資料表相關資訊都在 OrderDtTable
+            myTextField.setName(column.get(i)); // 設定每個TextField的name,資料表相關資訊都在 OrderDtTable
 
             if (i < 6)
             {

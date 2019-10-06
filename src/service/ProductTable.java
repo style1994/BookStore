@@ -29,6 +29,7 @@ public class ProductTable
 
         }
 
+        // 要顯示給使用者看到的攔位名稱
         columnName.add("書本編號");
         columnName.add("書名");
         columnName.add("ISBN");

@@ -24,6 +24,7 @@ public class SQLService
 
     }
 
+    // 拿到Table內的所有data
     public Vector<Vector<Object>> getAllTableData()
     {
 
@@ -62,7 +63,7 @@ public class SQLService
         return data;
     }
 
-    // 條件搜尋資料庫資料
+    // 條件搜尋
     public Vector<Vector<Object>> getTableData(String where)
     {
 
@@ -101,6 +102,7 @@ public class SQLService
         return data;
     }
 
+    // 獲得table欄位名稱
     public Vector<String> getColumnName()
     {
 
@@ -125,8 +127,10 @@ public class SQLService
 
     }
 
+    // 新增資料
     public int add(LinkedHashMap<String, String> map)
     {
+        // 拼接SQL語法
         StringBuilder sql = new StringBuilder("INSERT INTO " + tableName + " SET ");
 
         for (Entry<String, String> entry : map.entrySet())
@@ -134,20 +138,22 @@ public class SQLService
             String key = entry.getKey();
             String value = entry.getValue();
 
-            if (value.equals("")) // 如果是空字串，用default
+            if (value.equals(""))
             {
-                value = "default";
+                value = "default"; // 如果是空字串，用default
             } else
             {
-                value = "'" + value + "'"; // 位每個值前後都加上''
+                value = "'" + value + "'"; // 每個值前後都加上''
             }
             sql.append(key + " = " + value + ",");
 
         }
-        sql.deleteCharAt(sql.length() - 1); // 刪除最後多出來的,號
-        System.out.println(sql);
 
-        int isSuccess = 0;
+        sql.deleteCharAt(sql.length() - 1); // 刪除最後多的,號
+        System.out.println(sql); // 檢查用print
+
+        // 新增動作
+        int isSuccess = 0; // 紀錄受影響列數
         try
         {
             isSuccess = aStatement.executeUpdate(sql.toString());
@@ -164,7 +170,7 @@ public class SQLService
     // 更新
     public int updata(LinkedHashMap<String, String> dataMap, Vector<String> primarykey, Vector<String> keyValue)
     {
-        // 組織sql語法
+        // 拼接SQL語法
         StringBuilder sql = new StringBuilder("UPDATE " + tableName + " SET ");
 
         for (Entry<String, String> entry : dataMap.entrySet())
@@ -172,17 +178,17 @@ public class SQLService
             String key = entry.getKey();
             String value = entry.getValue();
 
-            if (value.equals("")) // 如果是空字串，用default
+            if (value.equals(""))
             {
-                value = "default";
+                value = "default"; // 如果是空字串，用default
             } else
             {
-                value = "'" + value + "'"; // 位每個值前後都加上''
+                value = "'" + value + "'"; // 每個值前後都加上''
             }
             sql.append(key + " = " + value + ",");
 
         }
-        sql.deleteCharAt(sql.length() - 1); // 刪掉最後的,號
+        sql.deleteCharAt(sql.length() - 1); // 刪掉最後多的,號
 
         sql.append(" WHERE ");
 
@@ -191,15 +197,15 @@ public class SQLService
             sql.append(primarykey.get(i) + " = " + "'" + keyValue.get(i) + "'" + " AND ");
         }
 
-        sql.delete(sql.length() - 4, sql.length() - 1); // 刪掉最後的and
+        sql.delete(sql.length() - 4, sql.length() - 1); // 刪掉最後的AND
 
         System.out.println(sql);
 
-        // 資料庫做更新動作
-        int affected = 0;
+        // 更新動作
+        int isSuccess = 0;
         try
         {
-            affected = aStatement.executeUpdate(sql.toString());// 傳回受影響的row數量
+            isSuccess = aStatement.executeUpdate(sql.toString());
 
         } catch (SQLException e)
         {
@@ -207,9 +213,10 @@ public class SQLService
             e.printStackTrace();
         }
 
-        return affected;
+        return isSuccess;
     }
 
+    // 獲得PK
     public Vector<String> getPrimaryKey()
     {
         Vector<String> keyList = new Vector<>();
@@ -236,8 +243,10 @@ public class SQLService
         return keyList;
     }
 
+    // 刪除
     public int del(Vector<String> primaryKey, Vector<String> value)
     {
+        // SQL拼接
         String sql = "DELETE FROM " + tableName + " WHERE ";
         String concate = "";
         for (int i = 0; i < primaryKey.size(); i++)
@@ -246,6 +255,7 @@ public class SQLService
         }
         sql += concate;
 
+        // 刪除動作
         int isSuccess = 0;
         try
         {
@@ -259,6 +269,7 @@ public class SQLService
         return isSuccess;
     }
 
+    // 獲得table欄位的所有資訊
     public Vector<Vector<Object>> getTableDesc()
     {
         Vector<Vector<Object>> list = new Vector<>();
@@ -319,4 +330,5 @@ public class SQLService
     {
         conn.close();
     }
+
 }

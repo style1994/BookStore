@@ -26,9 +26,9 @@ public class SetView extends JPanel
         setLayout(new GridBagLayout());
         this.dialog = dialog;
 
-        GridBagConstraints constraints;
         int EAST = GridBagConstraints.EAST;
 
+        // 排版
         JLabel ipLabel = new JLabel("ip:");
         MyGridBagLayout.getGridBagConstraints(this, ipLabel, 0, 0, 1, 1, EAST);
         JTextField ipTextField = new JTextField(10);

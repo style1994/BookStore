@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -84,18 +83,19 @@ public class DBConnect
             }
 
         }
-        //serverTimezone=Asia/Taipei 設定時區
-        //setUnicode=true 使用unicode
-        //characterEncoding=UTF-8 設定使用utf8
-        //useSSL=false 關閉ssl
-        //allowPublicKeyRetrieval = true 允許公開密鑰登入
 
+        /*
+         * serverTimezone=Asia/Taipei 設定時區 ,setUnicode=true 使用unicode
+         * characterEncoding=UTF-8 設定使用utf8,useSSL=false 關閉ssl
+         * allowPublicKeyRetrieval=true 允許公開密鑰登入
+         * 
+         */
         this.address = "jdbc:mysql://" + ip + ":" + port + "/" + dbName
                 + "?serverTimezone=Asia/Taipei&setUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval = true";
 
         try
         {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver"); // 載入driver
         } catch (ClassNotFoundException e)
         {
             System.out.println("找不到mysql驅動");
@@ -108,14 +108,13 @@ public class DBConnect
     {
         try
         {
+
             con = DriverManager.getConnection(address, user, passwd);
             aStatement = con.createStatement();
             if (con != null && con.isClosed() != false)
             {
                 System.out.println("資料庫連接成功");
             }
-
-            DatabaseMetaData dbMeta = con.getMetaData();
 
         } catch (SQLException e)
         {

@@ -159,7 +159,7 @@ public class MainFrame extends JFrame
         memberMaintain.addActionListener((ActionEvent e) ->
         {
 
-            useing_table = "membership"; // 更新使用的table
+            useing_table = "membership"; // 更新使用的表格
 
             JTable table = new JTable();
 
@@ -188,7 +188,7 @@ public class MainFrame extends JFrame
         productMaintain.addActionListener((ActionEvent e) ->
         {
 
-            useing_table = "book";
+            useing_table = "book"; // 設定使用表格
 
             JTable table = new JTable();
 
@@ -211,7 +211,7 @@ public class MainFrame extends JFrame
         orderMaintain.addActionListener((ActionEvent e) ->
         {
 
-            useing_table = "book_order_view"; // 這裡使用view來顯示
+            useing_table = "book_order_view"; // 設定使用表格
 
             JTable table = new JTable();
 

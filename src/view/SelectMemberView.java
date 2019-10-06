@@ -39,7 +39,7 @@ public class SelectMemberView extends JFrame
         pack();
         setVisible(true);
 
-        // 在滑鼠雙擊時設定orderView上的textField
+        // 在滑鼠雙擊時設定textField
         memberTable.addMouseListener(new MouseAdapter()
         {
 

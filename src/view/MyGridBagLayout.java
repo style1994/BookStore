@@ -18,7 +18,7 @@ public class MyGridBagLayout
         constraints.weighty = 0;
     }
 
-    // 用來取得GridBagConstraints 在取得前會進行一些通用設定
+    // 排版設定
     public static void getGridBagConstraints(JPanel view, JComponent component, int gridx, int gridy, int gridwidht,
             int gridheight, int anchor)
     {

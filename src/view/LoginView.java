@@ -102,7 +102,6 @@ public class LoginView extends JFrame
         other.add(setItem);
 
         setJMenuBar(menuBar);
-
         contentJPane.add(lblResult);
         contentJPane.add(btnOk);
         contentJPane.add(btnCancel);

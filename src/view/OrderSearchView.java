@@ -75,9 +75,8 @@ public class OrderSearchView extends JPanel
             {
 
                 String str = (String) item.getItem();
-                JComboBox<String> obj = (JComboBox<String>) item.getSource();
 
-                switch (str) // combobox欄位被選取時設定相對應欄位名稱
+                switch (str) // ComboBox欄位被選取時設定相對應欄位名稱
                 {
                     case "訂單編號":
                         colComboBox.setName("o_no");

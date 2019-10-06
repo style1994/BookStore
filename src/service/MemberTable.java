@@ -2,6 +2,7 @@ package service;
 
 import java.util.Vector;
 
+//紀錄Member表格的相關訊息
 public class MemberTable
 {
     final public static String tableName = "membership";
@@ -37,8 +38,9 @@ public class MemberTable
 
     }
 
+    // 不允許實例
     private MemberTable()
     {
-    } // 不允許實例
+    }
 
 }

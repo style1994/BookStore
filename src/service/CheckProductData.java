@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Vector;
 
-public class CheckProductData
+public class CheckProductData implements CheckData
 {
     String tableName;
     LinkedHashMap<String, String> data;
@@ -15,7 +15,8 @@ public class CheckProductData
         this.data = data;
     }
 
-    public boolean checkNull() 
+    @Override
+    public boolean checkNull()
     {
         Vector<Boolean> isNull = ProductTable.isNull;
 
@@ -34,67 +35,56 @@ public class CheckProductData
 
         return true;
     }
-    
-    public String checkFormat() { //傳回1通過 負數失敗
-    	
-    	for (Entry<String, String> entry : data.entrySet())
-		{
-    		String key = entry.getKey();
-    		String value = entry.getValue();
-    		
-    		switch (key)
-			{
-			case "b_no":
-				if(!value.matches("B\\d{5}")) {//編號格式限定B00001
-					System.out.println("b_no");
-					return "書本標號格式錯誤，範例:B00000";
-				}
-				break;
 
-			case "b_isbn":
-				if(value.length() !=13) { //ISBN
-					System.out.println("b_isbn");
-					return "ISBN長度須為13碼";
-				}
-				break;
-				
-			case "b_price":
-				if(!value.matches("\\d+") && Integer.parseInt(value)<0) { //價格只能輸入數字,且不可為負
-					System.out.println("b_bir");
-					return "價格只能輸入數字,且不可為負";
-				}
-				break;
+    @Override
+    public String checkFormat()
+    { // 傳回1通過 負數失敗
 
-			case "b_qty":
-				if(!value.matches("\\d+") && Integer.parseInt(value)<0) { //數量只能輸入數字,且不可為負
-					System.out.println("b_qty");
-					return "數量只能輸入數字,且不可為負";
-				}
-				break;
-			
-			}
-		
-		}
+        for (Entry<String, String> entry : data.entrySet())
+        {
+            String key = entry.getKey();
+            String value = entry.getValue();
 
-		return "成功"; //如果再迴圈內都沒做return代表通過所有檢查
-    	
+            switch (key)
+            {
+                case "b_no":
+                    if (!value.matches("B\\d{5}"))
+                    {// 編號格式限定B00001
+                        System.out.println("b_no");
+                        return "書本標號格式錯誤，範例:B00000";
+                    }
+                    break;
+
+                case "b_isbn":
+                    if (value.length() != 13)
+                    { // ISBN
+                        System.out.println("b_isbn");
+                        return "ISBN長度須為13碼";
+                    }
+                    break;
+
+                case "b_price":
+                    if (!value.matches("\\d+") && Integer.parseInt(value) < 0)
+                    { // 價格只能輸入數字,且不可為負
+                        System.out.println("b_bir");
+                        return "價格只能輸入數字,且不可為負";
+                    }
+                    break;
+
+                case "b_qty":
+                    if (!value.matches("\\d+") && Integer.parseInt(value) < 0)
+                    { // 數量只能輸入數字,且不可為負
+                        System.out.println("b_qty");
+                        return "數量只能輸入數字,且不可為負";
+                    }
+                    break;
+
+            }
+
+        }
+
+        return "成功"; // 如果再迴圈內都沒做return代表通過所有檢查
+
     }
-    
-    
-//    public static void main(String[] args)
-//	{
-//		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-//		map.put("m_no","M00001");
-//		map.put("m_name","你好");
-//		map.put("m_tel","0976000000");
-//		map.put("m_bir","1964-01-01");
-//		map.put("m_addr"," ");
-//		map.put("m_email", "a@ac");
-//		
-//		CheckMemberData data = new CheckMemberData("123",map);
-//		
-//		System.out.println(data.checkNull());
-//		System.out.println(data.checkFormat());
-//	}
 
 }

@@ -34,7 +34,7 @@ public class ProductSearchView extends JPanel
         this.setLayout(new GridBagLayout());
 
         // 排版
-        GridBagConstraints constraints;
+
         int east = GridBagConstraints.EAST;
         int west = GridBagConstraints.WEST;
 
@@ -72,16 +72,15 @@ public class ProductSearchView extends JPanel
             list.add(vector);
 
             panel.updateUI();
-            ;
+
             count++;
 
             colComboBox.addItemListener((ItemEvent item) ->
             {
 
                 String str = (String) item.getItem();
-                JComboBox<String> obj = (JComboBox<String>) item.getSource();
 
-                switch (str) // combobox欄位被選取時設定相對應欄位名稱
+                switch (str) // ComboBox欄位被選取時設定相對應欄位名稱
                 {
                     case "書本編號":
                         colComboBox.setName("b_no");

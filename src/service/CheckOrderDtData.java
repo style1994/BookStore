@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Vector;
 
-public class CheckOrderDtData
+public class CheckOrderDtData implements CheckData
 {
     String tableName;
     LinkedHashMap<String, String> data;
@@ -16,7 +16,8 @@ public class CheckOrderDtData
         this.data = data;
     }
 
-    public boolean checkNull() 
+    @Override
+    public boolean checkNull()
     {
         Vector<Boolean> isNull = OrderDtTable.isNull;
 
@@ -35,41 +36,42 @@ public class CheckOrderDtData
 
         return true;
     }
-    
-    public String checkFormat() { //傳回1通過 負數失敗
-    	
-    	for (Entry<String, String> entry : data.entrySet())
-		{
-    		String key = entry.getKey();
-    		String value = entry.getValue();
-    		
-    		switch (key)
-			{
-			case "od_price":
-				
-				LocalDate date = LocalDate.now();
-				String str = date.toString().replaceAll("-","");
-				if(!value.matches("\\d+")&& Integer.parseInt(value)<0) {//價格接受>0整數數字
-					System.out.println("o_price");
-					return "價格接受>0數字";
-				}
-				break;
-			case "od_qty":
-				if(!value.matches("\\d+") && Integer.parseInt(value)<0) { //數量接受>0整數數字
-					System.out.println("od_qty");
-					return "數量接受>0整數數字";
-				}
-				break;
-			
-			}
-		
-		}
 
-		return "成功"; //如果再迴圈內都沒做return代表通過所有檢查
-    	
+    @Override
+    public String checkFormat()
+    { // 傳回1通過 負數失敗
+
+        for (Entry<String, String> entry : data.entrySet())
+        {
+            String key = entry.getKey();
+            String value = entry.getValue();
+
+            switch (key)
+            {
+                case "od_price":
+
+                    LocalDate date = LocalDate.now();
+                    String str = date.toString().replaceAll("-", "");
+                    if (!value.matches("\\d+") && Integer.parseInt(value) < 0)
+                    {// 價格接受>0整數數字
+                        System.out.println("o_price");
+                        return "價格接受>0數字";
+                    }
+                    break;
+                case "od_qty":
+                    if (!value.matches("\\d+") && Integer.parseInt(value) < 0)
+                    { // 數量接受>0整數數字
+                        System.out.println("od_qty");
+                        return "數量接受>0整數數字";
+                    }
+                    break;
+
+            }
+
+        }
+
+        return "成功"; // 如果再迴圈內都沒做return代表通過所有檢查
+
     }
-    
-    
-    
 
 }

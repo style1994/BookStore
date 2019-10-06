@@ -12,15 +12,16 @@ public class LoginCheck
         DBConnect connect = new DBConnect();
         connect.getConnect();
         Statement aStatement = connect.getStatement();
-        ;
+
         try
         {
             if (account.length() > 0 && password.length() > 0)
             {
+                // 拼接SQL語法
                 String sql = "SELECT * FROM account WHERE userId='" + account + "' AND passwd='" + password + "'";
                 ResultSet rs = aStatement.executeQuery(sql);
 
-                // 如果rs裡面有資料 且帳號密碼都符合的話傳回登入權限
+                // 如果ResultSet裡面有資料 且帳號密碼都符合的話傳回登入權限
                 if (rs.next() && account.equals(rs.getString(1)) && password.equals(rs.getString(2)))
                 {
                     return rs.getString(3); // 帳密正確傳回帳戶的權限

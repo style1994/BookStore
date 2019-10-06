@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Vector;
 
-public class CheckMemberData
+public class CheckMemberData implements CheckData
 {
     String tableName;
     LinkedHashMap<String, String> data;
@@ -15,6 +15,7 @@ public class CheckMemberData
         this.data = data;
     }
 
+    @Override
     public boolean checkNull()
     {
         Vector<Boolean> isNull = MemberTable.isNull;
@@ -35,6 +36,7 @@ public class CheckMemberData
         return true;
     }
 
+    @Override
     public String checkFormat()
     { // 傳回1通過 負數失敗
 
@@ -84,21 +86,5 @@ public class CheckMemberData
         return "成功"; // 如果再迴圈內都沒做return代表通過所有檢查
 
     }
-
-//    public static void main(String[] args)
-//	{
-//		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-//		map.put("m_no","M00001");
-//		map.put("m_name","你好");
-//		map.put("m_tel","0976000000");
-//		map.put("m_bir","1964-01-01");
-//		map.put("m_addr"," ");
-//		map.put("m_email", "a@ac");
-//		
-//		CheckMemberData data = new CheckMemberData("123",map);
-//		
-//		System.out.println(data.checkNull());
-//		System.out.println(data.checkFormat());
-//	}
 
 }

@@ -25,7 +25,7 @@ public class TableControl
         return service.getColumnName();
     }
 
-    // 獲取一個有資料的tablemodel
+    // 獲取一個有資料的TableModel
     public static MyTableModel getTableModel(String tableName)
     {
 
@@ -33,6 +33,7 @@ public class TableControl
         Vector<Vector<Object>> data = getData(tableName);
         Vector<String> column = getColumn(tableName);
         service.close();
+
         return new MyTableModel(data, column);
     }
 
@@ -41,7 +42,7 @@ public class TableControl
     {
         SQLService service = new SQLService(tableName);
 
-        int isSuccess = service.add(map);
+        int isSuccess = service.add(map); // 對Table做新增
 
         if (isSuccess == 1)
         {
@@ -60,11 +61,11 @@ public class TableControl
     {
         SQLService service = new SQLService(tableName);
 
-        int isSuccess = service.add(mapForDatabase); // 把真正要給database新增的資料丟給SQLService
+        int isSuccess = service.add(mapForDatabase); // 對Table做新增
 
         if (isSuccess == 1)
         {
-            model.addTableData(mapForModel); // 把要顯示給使用者看的資料丟給自訂tablemodel
+            model.addTableData(mapForModel); // SQL新增成功的話更新TableModel資料
             return true;
         } else
         {
@@ -77,12 +78,12 @@ public class TableControl
     public static void delTableData(String tableName, int row, MyTableModel model)
     {
         SQLService service = new SQLService(tableName);
-        Vector<String> keyList = service.getPrimaryKey(); // 拿到所屬資料表的主key 所屬類別是sqlservice
+        Vector<String> keyList = service.getPrimaryKey(); // 拿到Table PK
 
-        Vector<String> value = model.getPrimaryKeyValue(row, keyList); // 拿到對應key的資料
+        Vector<String> value = model.getPrimaryKeyValue(row, keyList); // 透過Model拿到該列的PK值
 
-        service.del(keyList, value);
-        model.delTableData(row);
+        service.del(keyList, value); // 對資料庫做刪除
+        model.delTableData(row); // Model資料刪除
 
     }
 
@@ -98,11 +99,11 @@ public class TableControl
             MyTableModel model)
     {
         SQLService service = new SQLService(tableName);
-        Vector<String> primaryKey = service.getPrimaryKey();
-        Vector<String> keyValue = model.getPrimaryKeyValue(row, primaryKey);
+        Vector<String> primaryKey = service.getPrimaryKey(); // 拿到Table PK
+        Vector<String> keyValue = model.getPrimaryKeyValue(row, primaryKey); // 透過Model拿到該列的PK值
 
-        model.updateTableData(row, dataMap); // 更新表格模型裡存在的資料
-        int affected = service.updata(dataMap, primaryKey, keyValue); // 更新實際資料庫存在的資料
+        model.updateTableData(row, dataMap); // 更新Model資料
+        int affected = service.updata(dataMap, primaryKey, keyValue); // 更新資料庫的資料
 
         boolean isSuccess = (affected == 1) ? true : false;
 
@@ -116,11 +117,11 @@ public class TableControl
     {
 
         SQLService service = new SQLService(tableName);
-        Vector<String> primaryKey = service.getPrimaryKey();
-        Vector<String> keyValue = model.getPrimaryKeyValue(row, primaryKey);
+        Vector<String> primaryKey = service.getPrimaryKey(); // 拿到Table PK
+        Vector<String> keyValue = model.getPrimaryKeyValue(row, primaryKey); // 透過Model拿到該列的PK值
 
-        model.updateTableData(row, mapForModel); // 更新表格模型裡存在的資料
-        int affected = service.updata(mapForDatabase, primaryKey, keyValue); // 更新實際資料庫存在的資料
+        model.updateTableData(row, mapForModel); // 更新Model資料
+        int affected = service.updata(mapForDatabase, primaryKey, keyValue); // 更新資料庫資料
 
         boolean isSuccess = (affected == 1) ? true : false;
 

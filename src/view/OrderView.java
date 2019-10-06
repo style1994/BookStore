@@ -129,7 +129,7 @@ public class OrderView extends JPanel
         for (int i = 0; i < textList.size(); i++)
         {
             JTextField myTextField = textList.get(i);
-            myTextField.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
+            myTextField.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
             myTextField.setName(OrderTable.column.get(i));
             if (i >= 2) // 設定部分textField不能被編輯
             {

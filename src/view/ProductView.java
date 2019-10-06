@@ -45,7 +45,7 @@ public class ProductView extends JPanel
 
         setLayout(new GridBagLayout());
         // 排版
-        GridBagConstraints constraints;
+
         final int EAST = GridBagConstraints.EAST;
         final int WEST = GridBagConstraints.WEST;
 
@@ -94,7 +94,7 @@ public class ProductView extends JPanel
         JTextField posTextField = new JTextField(15);
         MyGridBagLayout.getGridBagConstraints(this, posTextField, 3, 3, 3, 1, WEST);
 
-        JLabel resultLabel = new JLabel("*號欄位不得為空");
+        JLabel resultLabel = new JLabel("*號欄位不得為空"); // 顯示結果的Label
         MyGridBagLayout.getGridBagConstraints(this, resultLabel, 0, 5, 0, 1, WEST);
         resultLabel.setForeground(Color.red);
         resultLabel.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
@@ -111,8 +111,8 @@ public class ProductView extends JPanel
         JButton delButton = new JButton("刪除");
         MyGridBagLayout.getGridBagConstraints(this, delButton, 5, 6, 1, 1, WEST);
 
-        ArrayList<JLabel> lblArrayList = new ArrayList<>(); // Jlable 陣列
-        ArrayList<JTextField> textArrayList = new ArrayList<>(); // textField 陣列
+        ArrayList<JLabel> lblArrayList = new ArrayList<>(); // JLable 陣列
+        ArrayList<JTextField> textArrayList = new ArrayList<>(); // TextField 陣列
 
         lblArrayList.add(noLabel);
         lblArrayList.add(nameLabel);
@@ -139,15 +139,13 @@ public class ProductView extends JPanel
             jLabel.setFont(new Font("微軟正黑體", Font.BOLD, 14));
         }
 
-        int num = 0;// 獲取column的指標
+        int num = 0;// Column index
         for (JTextField jTextField : textArrayList) // 統一設定JTextField
         {
             jTextField.setName(ProductTable.column.get(num));
             jTextField.setFont(new Font("微軟正黑體", Font.BOLD, 14));
             num++;
         }
-
-        // 事件
 
         // 搜尋
         searchButton.addActionListener((ActionEvent e) ->
@@ -202,9 +200,8 @@ public class ProductView extends JPanel
             {
 
                 LinkedHashMap<String, String> map = new LinkedHashMap<>();
-                for (JTextField jTextField : textArrayList) // 把textfield資料丟進map
+                for (JTextField jTextField : textArrayList) // 紀錄TextFied資料
                 {
-                    System.out.println(jTextField.getName() + "," + jTextField.getText());
                     map.put(jTextField.getName(), jTextField.getText());
                 }
 
@@ -234,16 +231,16 @@ public class ProductView extends JPanel
         // 更新
         updataButton.addActionListener((ActionEvent e) ->
         {
-            int row = table.getSelectedRow(); // 被選取的row
-            boolean isSuccess = false; // 紀錄執行sql指令後的結果
+            int row = table.getSelectedRow(); // 被選取的Row
+            boolean isSuccess = false; // 紀錄執行SQL指令後的結果
 
-            if (row > -1)
-            {// 確認使用者jtable有選擇資料欄位
-             // 詢問使用者是否確定修改
+            if (row > -1) // 確認使用者JTable有選擇資料欄位
+            {
+
                 int check = JOptionPane.showConfirmDialog(panel, "是否要更新資料?", "更新", JOptionPane.YES_NO_OPTION,
                         JOptionPane.WARNING_MESSAGE);
 
-                if (check == JOptionPane.YES_OPTION)
+                if (check == JOptionPane.YES_OPTION) // 詢問使用者是否確定修改
                 {
                     LinkedHashMap<String, String> map = new LinkedHashMap<>();
                     MyTableModel model = (MyTableModel) table.getModel(); // 拿到自訂的table model
@@ -252,9 +249,9 @@ public class ProductView extends JPanel
                         map.put(jTextField.getName(), jTextField.getText());
                     }
 
-                    String message = DataCheckControl.productCheck(tableName, map);
+                    String message = DataCheckControl.productCheck(tableName, map); // 做資料檢查
                     if (message.equals("成功"))
-                    { // 做型態檢查
+                    {
                         isSuccess = TableControl.updataTableData(tableName, map, row, model);
                         if (isSuccess == true)
                             JOptionPane.showMessageDialog(panel, "更新" + message);
@@ -263,7 +260,7 @@ public class ProductView extends JPanel
                         JOptionPane.showMessageDialog(panel, message);
                     }
 
-                    if (isSuccess) // 修改提示label訊息
+                    if (isSuccess) // 修改提示Label訊息
                     {
                         resultLabel.setText("資料更新成功");
                     } else
@@ -323,7 +320,6 @@ public class ProductView extends JPanel
                     myTextField.setText(obj.get(i));
 
                 }
-
             }
 
         });

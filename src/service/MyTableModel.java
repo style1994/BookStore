@@ -23,13 +23,14 @@ public class MyTableModel extends AbstractTableModel
 
     }
 
+    // 顯示列數
     @Override
     public int getRowCount()
     {
-
         return data.size();
     }
 
+    // 顯示欄數
     @Override
     public int getColumnCount()
     {
@@ -37,6 +38,7 @@ public class MyTableModel extends AbstractTableModel
         return column.size();
     }
 
+    // 取得Row列Column值
     @Override
     public Object getValueAt(int rowIndex, int columnIndex)
     {
@@ -55,14 +57,14 @@ public class MyTableModel extends AbstractTableModel
 
     }
 
-    // 設定Jtable是否能被編輯
+    // 設定JTable可否被編輯
     @Override
     public boolean isCellEditable(int row, int col)
     {
         return false;
     }
 
-    // 讓jtable能抓到欄位名稱
+    // 讓JTable能抓到欄位名稱
     @Override
     public String getColumnName(int col)
     {
@@ -76,10 +78,11 @@ public class MyTableModel extends AbstractTableModel
 
     }
 
-    // table新增資料方法
+    // JTable新增資料方法
     public void addTableData(HashMap<String, String> map)
     {
         Vector<Object> obj = new Vector<>(); // 要放入的新資料
+
         int column = 0; // 控制column找到相對應class
         for (Entry<String, String> entry : map.entrySet())
         {
@@ -106,16 +109,16 @@ public class MyTableModel extends AbstractTableModel
                 obj.add(Integer.valueOf(i));
             } else
             {
-                obj.add(entry.getValue()); // 如果class不是就當字串新增
+                obj.add(entry.getValue()); // 都不是就當字串型態新增
             }
-            column++; // 指標++
+            column++; // index++
 
         }
         data.add(obj); // 將資料加入到data內
-        fireTableDataChanged(); // 更新jtable
+        fireTableDataChanged(); // 更新JTable
     }
 
-    // 刪除資料
+    // 刪除Model資料
     public void delTableData(int row)
     {
         data.remove(row); // 刪除被選中的row
@@ -123,7 +126,7 @@ public class MyTableModel extends AbstractTableModel
 
     }
 
-    // 拿到對應主key的值
+    // 拿到PK的值
     public Vector<String> getPrimaryKeyValue(int row, Vector<String> primaryKey)
     {
 
@@ -140,6 +143,7 @@ public class MyTableModel extends AbstractTableModel
 
     }
 
+    // 拿到那一列所有欄位值
     public Vector<String> getRowValues(int row)
     {
         Vector<String> value = new Vector<>();
@@ -159,6 +163,7 @@ public class MyTableModel extends AbstractTableModel
         return value;
     }
 
+    // 更新Model資料
     public void updateTableData(int row, LinkedHashMap<String, String> dataMap)
     {
 
@@ -169,13 +174,12 @@ public class MyTableModel extends AbstractTableModel
         for (Entry<String, String> entry : dataMap.entrySet())
         {
             String type = getColumnClass(column).getName();
-            System.out.println(type);
 
-            if (type.equals("java.lang.String"))
-            {// 如果是字串，直接把值加入
+            if (type.equals("java.lang.String")) // 如果是字串，直接把值加入
+            {
                 objList.add(entry.getValue());
-            } else if (type.equals("java.sql.Date"))
-            { // 如果是sqldate物件 就新增sqldate加進去
+            } else if (type.equals("java.sql.Date")) // 如果是sql.date物件
+            {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
                 try
                 {
@@ -189,45 +193,37 @@ public class MyTableModel extends AbstractTableModel
                     e.printStackTrace();
                 }
 
-            } else if (type.equals("java.lang.Integer"))
+            } else if (type.equals("java.lang.Integer")) // 如果是Integer
             {
-                objList.add(Integer.valueOf(entry.getValue())); // 將字串轉為一個integer
+                objList.add(Integer.valueOf(entry.getValue()));
             }
 
-            column++; // 指標後移
+            column++; // index++
 
         } // for each
-        System.out.println("obj的長度: " + objList.size());
-        for (Object object : objList)
-        {
-            System.out.println(object.toString());
-        }
 
-        for (String c : columnType)
-        {
-            System.out.println(c);
-        }
-
-        data.remove(row);// 移除掉所選取row的資料,再把修改資料重新加到原有index值
+        // 移除掉所選取Row的資料,再把修改資料重新加到原有Index值
+        data.remove(row);
         data.add(row, objList);
-        fireTableDataChanged(); // 更新jtable
-
-        System.out.println("hello");
+        fireTableDataChanged(); // 更新JTable
 
     }
 
+    // 設定Model資料
     public void setTableData(Vector<Vector<Object>> data)
     {
-        this.data = data; // 重新設定model裡的資料
+        this.data = data;
 
-        fireTableDataChanged(); // 更新table
+        fireTableDataChanged(); // 更新JTable
     }
 
+    // 設定Model欄位名
     public void setColumnName(Vector<String> columnName)
     {
         this.columnName = columnName;
     }
 
+    // 設定Model欄位資料型態
     public void setType(Vector<String> columnType)
     {
         this.columnType = columnType;
