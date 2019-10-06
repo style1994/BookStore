@@ -3,6 +3,7 @@ package service;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
@@ -158,6 +159,11 @@ public class SQLService
         {
             isSuccess = aStatement.executeUpdate(sql.toString());
 
+        } catch (SQLIntegrityConstraintViolationException e)
+        {
+            System.out.println("資料完整性檢查錯誤，檢查你的PK值是否衝突");
+            System.out.println(e.getMessage());
+
         } catch (SQLException e)
         {
             System.out.println("新增資料失敗，發生錯誤");
@@ -206,6 +212,11 @@ public class SQLService
         try
         {
             isSuccess = aStatement.executeUpdate(sql.toString());
+
+        } catch (SQLIntegrityConstraintViolationException e)
+        {
+            System.out.println("資料完整性檢查錯誤，檢查你的PK值是否衝突");
+            System.out.println(e.getMessage());
 
         } catch (SQLException e)
         {

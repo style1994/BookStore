@@ -129,7 +129,7 @@ public class OrderView extends JPanel
         for (int i = 0; i < textList.size(); i++)
         {
             JTextField myTextField = textList.get(i);
-            myTextField.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
+            myTextField.setFont(new Font("微軟正黑體", Font.PLAIN, 13));
             myTextField.setName(OrderTable.column.get(i));
             if (i >= 2) // 設定部分textField不能被編輯
             {
@@ -226,7 +226,7 @@ public class OrderView extends JPanel
             header.setFont(new Font("微軟正黑體", Font.PLAIN, 16));// 設定表頭字體
             header.setBackground(Color.white);// 設定表頭背景
 
-            dtTable = orderDtTable; // 保留這裡的明細檔jtable當主檔jtable點選時 要改變明細檔jtable用
+            dtTable = orderDtTable; // 保留這裡的明細檔JTable當主檔JTable點選時 要改變明細檔JTable用
             OrderDetailView detailView = new OrderDetailView(orderDtTable, "book_orderdt_view");
 
             splitPane.setTopComponent(detailView);

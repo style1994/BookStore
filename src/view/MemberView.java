@@ -201,6 +201,7 @@ public class MemberView extends JPanel
 
                 if (message.equals("成功"))
                 {
+
                     isSuccess = TableControl.addTableData(tableName, map, (MyTableModel) table.getModel());
                     if (isSuccess == true)
                         JOptionPane.showMessageDialog(panel, "新增" + message);
