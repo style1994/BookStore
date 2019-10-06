@@ -163,6 +163,8 @@ public class OrderDetailSearchView extends JPanel
 
             }
 
+            TableControl.reloadTableData(tableName, "", (MyTableModel) table.getModel());
+
         });
 
     }

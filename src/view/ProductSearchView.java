@@ -166,6 +166,8 @@ public class ProductSearchView extends JPanel
 
             }
 
+            TableControl.reloadTableData(tableName, "", (MyTableModel) table.getModel());
+
         });
 
     }

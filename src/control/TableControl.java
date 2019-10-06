@@ -40,6 +40,7 @@ public class TableControl
     // 新增資料
     public static boolean addTableData(String tableName, LinkedHashMap<String, String> map, MyTableModel model)
     {
+
         SQLService service = new SQLService(tableName);
 
         int isSuccess = service.add(map); // 對Table做新增
@@ -102,12 +103,16 @@ public class TableControl
         Vector<String> primaryKey = service.getPrimaryKey(); // 拿到Table PK
         Vector<String> keyValue = model.getPrimaryKeyValue(row, primaryKey); // 透過Model拿到該列的PK值
 
-        model.updateTableData(row, dataMap); // 更新Model資料
         int affected = service.updata(dataMap, primaryKey, keyValue); // 更新資料庫的資料
 
-        boolean isSuccess = (affected == 1) ? true : false;
-
-        return isSuccess;
+        if (affected == 1)
+        {
+            model.updateTableData(row, dataMap); // 更新Model資料
+            return true;
+        } else
+        {
+            return false;
+        }
 
     }
 
@@ -120,12 +125,16 @@ public class TableControl
         Vector<String> primaryKey = service.getPrimaryKey(); // 拿到Table PK
         Vector<String> keyValue = model.getPrimaryKeyValue(row, primaryKey); // 透過Model拿到該列的PK值
 
-        model.updateTableData(row, mapForModel); // 更新Model資料
         int affected = service.updata(mapForDatabase, primaryKey, keyValue); // 更新資料庫資料
 
-        boolean isSuccess = (affected == 1) ? true : false;
-
-        return isSuccess;
+        if (affected == 1)
+        {
+            model.updateTableData(row, mapForModel); // 更新Model資料
+            return true;
+        } else
+        {
+            return false;
+        }
 
     }
 
