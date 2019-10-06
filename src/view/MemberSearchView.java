@@ -125,6 +125,12 @@ public class MemberSearchView extends JPanel
                     if (selectLogic.equals("Like"))
                     {
                         where.append(selectCol + " " + selectLogic + "'%" + text + "%' AND ");
+
+                    } else if (selectCol.equals("m_bir") && !text.matches("\\d{4}(-\\d\\d){2}")) // 如果日期沒有輸入完整格式都用Like來處理
+                    {
+
+                        where.append(selectCol + " " + "Like" + "'%" + text + "%' AND ");
+
                     } else
                     {
                         where.append(selectCol + selectLogic + "'" + text + "' AND ");
@@ -153,6 +159,8 @@ public class MemberSearchView extends JPanel
                 ((JTextField) obj.get(2)).setText("");
 
             }
+
+            TableControl.reloadTableData(tableName, "", (MyTableModel) table.getModel());
 
         });
 

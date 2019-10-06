@@ -133,8 +133,14 @@ public class TableControl
     private static Vector<Vector<Object>> searchTableData(String tableName, String where)
     {
         SQLService service = new SQLService(tableName);
+        if (where.startsWith(" where "))
+        {
+            return service.getTableData(where);
+        } else
+        {
+            return service.getAllTableData();
+        }
 
-        return service.getTableData(where);
     }
 
     // 重載table資料，給搜尋用

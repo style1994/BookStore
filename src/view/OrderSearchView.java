@@ -125,6 +125,11 @@ public class OrderSearchView extends JPanel
                     if (selectLogic.equals("Like"))
                     {
                         where.append(selectCol + " " + selectLogic + "'%" + text + "%' AND ");
+                    } else if (selectCol.equals("o_date") && !text.matches("\\d{4}(-\\d\\d){2}")) // 如果日期沒有輸入完整格式都用Like來處理
+                    {
+
+                        where.append(selectCol + " " + "Like" + "'%" + text + "%' AND ");
+
                     } else
                     {
                         where.append(selectCol + selectLogic + "'" + text + "' AND ");
