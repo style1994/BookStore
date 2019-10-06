@@ -33,7 +33,7 @@ public class MainFrame extends JFrame
 {
     private ArrayList<JMenu> jMenuList;
     private ArrayList<JMenuItem> jMenuItemList;
-    private JFrame jfrm = this; // 代表這張mian view
+    private JFrame jfrm = this; // 代表自己，給message dialog用
     private JSplitPane contentPane;
 
     String useing_table; // 紀錄上半部現在是哪個維護哪個資料表
@@ -154,6 +154,7 @@ public class MainFrame extends JFrame
             }
 
         });
+
         // 會員資料表維護
         memberMaintain.addActionListener((ActionEvent e) ->
         {
@@ -210,7 +211,7 @@ public class MainFrame extends JFrame
         orderMaintain.addActionListener((ActionEvent e) ->
         {
 
-            useing_table = "book_order_view"; // 這裡使用view
+            useing_table = "book_order_view"; // 這裡使用view來顯示
 
             JTable table = new JTable();
 

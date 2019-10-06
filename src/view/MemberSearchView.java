@@ -38,8 +38,8 @@ public class MemberSearchView extends JPanel
 
         Vector<Vector<Object>> list = new Vector<>(); // 儲存實例出來的視窗原件(按按鈕產生的)
 
-        String[] colArray = { "欄位", "會員編號", "會員名稱", "電話", "生日", "地址", "Email" };
-        String[] logicArray = { "查詢條件", "=", ">", "<", ">=", "<=", "!=", "Like" };
+        String[] colArray = { "欄位", "會員編號", "會員名稱", "電話", "生日", "地址", "Email" }; // 會員的攔位
+        String[] logicArray = { "查詢條件", "=", ">", "<", ">=", "<=", "!=", "Like" }; // 條件的欄位
 
         JButton addRow = new JButton("+");
         MyGridBagLayout.getGridBagConstraints(this, addRow, 0, 0, 1, 1, GridBagConstraints.CENTER);
@@ -142,7 +142,7 @@ public class MemberSearchView extends JPanel
 
         });
 
-        // 清除所有條件內容事件
+        // 清除所有內容事件
         clearButton.addActionListener((ActionEvent e) ->
         {
 
@@ -158,6 +158,7 @@ public class MemberSearchView extends JPanel
 
     }
 
+    // 畫背景圖
     @Override
     public void paintComponent(Graphics g)
     {
