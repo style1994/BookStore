@@ -416,7 +416,7 @@ public class OrderView extends JPanel
                     OrderDetailView.setOrderNumber(obj.get(0));
 
                     // 這裡組織查詢條件
-                    StringBuffer where = new StringBuffer(" WHERE od_no = ");
+                    StringBuffer where = new StringBuffer(" where od_no = ");
 
                     where.append("'" + noTextField.getText() + "'");
                     System.out.println(where);
